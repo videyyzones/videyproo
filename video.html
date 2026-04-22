@@ -1,63 +1,19 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Video</title>
-
-<style>
-body {
-  margin:0;
-  background:#000;
-}
-video {
-  width:100%;
-  height:100vh;
-  object-fit:cover;
-}
-</style>
-</head>
-
-<body>
-
-<video id="player" autoplay controls playsinline></video>
-
 <script>
-// ambil id
 const url = new URLSearchParams(window.location.search);
-const id = url.get('id');
+let id = parseInt(url.get('id'));
 
-// load video
 fetch('videos.json')
 .then(res => res.json())
 .then(data => {
-  document.getElementById("player").src = data[id].file;
-});
 
-// DIRECT LINK MONETAG
-let clicked = false;
-document.body.onclick = function() {
-  if (!clicked) {
-    clicked = true;
-    window.open("https://omg10.com/4/10911172", "_blank");
+  if (!data.length) return;
+
+  // safety check biar tidak error
+  if (isNaN(id) || id < 0 || id >= data.length) {
+    id = 0;
   }
-}
-</script>
 
-<!-- STATCOUNTER -->
-<script type="text/javascript">
-var sc_project=13223529; 
-var sc_invisible=1; 
-var sc_security="344d217c"; 
+  const player = document.getElementById("player");
+  player.src = data[id].file;
+});
 </script>
-<script src="https://www.statcounter.com/counter/counter.js" async></script>
-<noscript>
-<div class="statcounter">
-<a href="https://statcounter.com/" target="_blank">
-<img src="https://c.statcounter.com/13223529/0/344d217c/1/" alt="">
-</a>
-</div>
-</noscript>
-
-</body>
-</html>
