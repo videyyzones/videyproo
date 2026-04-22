@@ -3,99 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>videypro</title>
+<title>Videy Zone</title>
 
 <style>
-body {
-  margin:0;
-  background:#fff;
-  color:#000;
-  font-family:Arial;
-}
-
-.header {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:12px 16px;
-  border-bottom:1px solid #eee;
-}
-
-.logo {
-  font-size:22px;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-.upload {
-  background:#0d1b2a;
-  color:#fff;
-  padding:8px 16px;
-  border-radius:25px;
-  font-size:14px;
-}
-
-.container {
-  padding:10px;
-}
-
-.main-video {
-  position:relative;
-}
-
-.main-video video {
-  width:100%;
-  border-radius:15px;
-  background:#000;
-}
-
-.overlay {
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  font-size:60px;
-  color:white;
-  background:rgba(0,0,0,0.5);
-  width:80px;
-  height:80px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border-radius:50%;
-  cursor:pointer;
-}
-
-.main-title {
-  font-size:16px;
-  font-weight:bold;
-  margin:10px 0;
-}
-
-.meta {
-  font-size:13px;
-  color:#555;
-  margin-bottom:10px;
-}
+body { margin:0; font-family:Arial; background:#fff; }
 
 .grid {
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:10px;
+  padding:10px;
 }
 
-.item {
-  cursor:pointer;
-}
+.item { cursor:pointer; }
 
 .item video {
   width:100%;
   border-radius:10px;
 }
-
 .item-title {
   font-size:13px;
-  margin-top:5px;
 }
 </style>
 </head>
@@ -103,109 +30,47 @@ body {
 <body>
 
 <!-- POPUNDER -->
-<script>(function(s){s.dataset.zone='10911170',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+<script>
+(function(s){
+  s.dataset.zone='10911170',
+  s.src='https://al5sm.com/tag.min.js'
+})([document.documentElement, document.body]
+.filter(Boolean).pop()
+.appendChild(document.createElement('script')))
+</script>
 
-<div class="header">
-  <div class="logo" onclick="location.reload()">videypro</div>
-  <div class="upload">Upload</div>
-</div>
-
-<div class="container">
-
-  <div class="main-video" onclick="playVideo()">
-    <video id="mainPlayer"></video>
-    <div class="overlay" id="overlay">▶</div>
-  </div>
-
-  <div class="main-title" id="mainTitle"></div>
-
-  <div class="meta">
-    👁 1.2M views • ❤️ 25K likes
-  </div>
-
-  <div class="grid" id="videoList"></div>
-
-</div>
+<div class="grid" id="videoList"></div>
 
 <script>
-let videos = [];
 let clicked = false;
 
-function playVideo(){
-  let video = document.getElementById("mainPlayer");
+function openVideo(i) {
+  location.href = 'video.html?id=' + i;
 
-  video.play();
-  document.getElementById("overlay").style.display = "none";
-
-  if(!clicked){
+  if (!clicked) {
     clicked = true;
-    window.open("https://omg10.com/4/10888070", "_blank");
+    window.open("https://omg10.com/4/10911172", "_blank");
   }
-}
-
-function shuffle(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array;
 }
 
 fetch('videos.json')
 .then(res => res.json())
 .then(data => {
 
-  videos = shuffle(data);
-
-  loadVideo(0);
-
   let html = "";
-  videos.forEach((vid, i) => {
-    if(i !== 0){
-      html += `
-        <div class="item" onclick="loadVideo(${i})">
-          <video src="${vid.file}"></video>
-          <div class="item-title">${vid.title}</div>
-        </div>
-      `;
-    }
+
+  data.forEach((vid, i) => {
+    html += `
+      <div class="item" onclick="openVideo(${i})">
+        <video src="${vid.file}"></video>
+        <div class="item-title">${vid.title}</div>
+      </div>
+    `;
   });
 
   document.getElementById("videoList").innerHTML = html;
 });
-
-function loadVideo(i){
-  let video = document.getElementById("mainPlayer");
-
-  video.pause();
-  video.currentTime = 0;
-
-  video.src = videos[i].file;
-  document.getElementById("mainTitle").innerText = videos[i].title;
-
-  document.getElementById("overlay").style.display = "flex";
-
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-}
 </script>
-
-<!-- STATCOUNTER -->
-<script type="text/javascript">
-var sc_project=13223529; 
-var sc_invisible=1; 
-var sc_security="344d217c"; 
-</script>
-<script src="https://www.statcounter.com/counter/counter.js" async></script>
-<noscript>
-<div class="statcounter">
-<a href="https://statcounter.com/" target="_blank">
-<img src="https://c.statcounter.com/13223529/0/344d217c/1/" alt="">
-</a>
-</div>
-</noscript>
 
 </body>
 </html>
