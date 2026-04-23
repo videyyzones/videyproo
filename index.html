@@ -105,7 +105,7 @@ body {
 <!-- POPUNDER -->
 <script>
 (function(s){
-  s.dataset.zone='10879872',
+  s.dataset.zone='10911170',
   s.src='https://al5sm.com/tag.min.js'
 })
 ([document.documentElement, document.body]
@@ -148,7 +148,7 @@ function playVideo(){
 
   if(!clicked){
     clicked = true;
-    window.open("https://omg10.com/4/10888070", "_blank");
+    window.open("https://omg10.com/4/10911172", "_blank");
   }
 }
 
@@ -193,6 +193,9 @@ function loadVideo(i){
   document.getElementById("mainTitle").innerText = videos[i].title;
 
   document.getElementById("overlay").style.display = "flex";
+
+  // reset supaya klik video berikutnya bisa buka iklan lagi
+  clicked = false;
 
   window.scrollTo({
     top: 0,
