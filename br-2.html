@@ -1,172 +1,242 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
+
 <head>
-	<script>(function(s){s.dataset.zone='11029641',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
-<meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Vodul</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<title>videypro - Video</title>
 
-  <style>
-    :root{
-      --bg:#ffffff; --text:#0f172a; --muted:#64748b; --line:#e2e8f0; --brand:#111827;
-      --btn:#111827; --btnText:#ffffff; --btnHover:#000000; --card:#f8fafc;
-    }
+<meta name="description" content="Tonton video trending terbaru dengan kualitas HD dan loading cepat di videypro.">
 
-    *,*::before,*::after{ box-sizing:border-box }
-    html{ -webkit-text-size-adjust:100% }
-    html,body{ height:100%; margin:0 }
-    body{
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;
-      color:var(--text); background:var(--bg); line-height:1.45;
-      overflow-x:hidden;
-    }
-    img,video,canvas,svg,iframe{ max-width:100%; height:auto; display:block }
+<link rel="icon" href="https://cdn-icons-png.flaticon.com/512/1383/1383260.png">
 
-    .appbar{
-      position:sticky; top:0; z-index:20; background:rgba(255,255,255,.85);
-      backdrop-filter:saturate(180%) blur(8px); border-bottom:1px solid var(--line);
-    }
-    .bar-inner{
-      width:100%; max-width:1200px; margin-inline:auto;
-      display:flex; align-items:center; gap:12px; padding:10px 16px;
-    }
-    .brand{ display:flex; align-items:center; gap:8px; font-weight:800; letter-spacing:.2px }
-    .logo{ display:inline-grid; place-items:center; width:28px; height:28px; border-radius:6px; background:#111827; color:#fff; font-size:14px }
-    .spacer{ flex:1 }
-    .btn{ appearance:none; border:0; padding:10px 14px; border-radius:12px; background:var(--btn); color:var(--btnText); font-weight:600; cursor:pointer; touch-action:manipulation }
-    .btn:hover{ background:var(--btnHover) }
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:#fff;
+}
 
-    .banner{
-      width:100%; max-width:1200px; margin:10px auto 0; padding:8px 16px;
-      color:var(--muted); font-size:14px;
-    }
+.header{
+display:flex;
+justify-content:space-between;
+padding:12px;
+border-bottom:1px solid #eee;
+}
 
-    .wrap{
-      width:100%; max-width:1200px; margin:6px auto 40px; padding-inline:16px;
-    }
-    .player-shell{ display:grid; place-items:center; margin-top:20px }
+.logo{
+font-weight:bold;
+font-size:20px;
+}
 
-    .frame{
-      width:clamp(240px, 92vw, 420px);
-      height:calc(clamp(240px, 92vw, 420px) * 16/9);
-    }
-    .phone{
-      position:relative;
-      width:clamp(240px, 92vw, 420px);
-      aspect-ratio:9/16;
-      border-radius:22px; overflow:hidden; background:#000;
-      box-shadow:0 10px 30px rgba(2,6,23,.15), 0 3px 10px rgba(2,6,23,.08);
-    }
-    .phone video,.phone img{ width:100%; height:100%; object-fit:cover }
+.upload{
+background:#0d1b2a;
+color:#fff;
+padding:8px 16px;
+border-radius:20px;
+font-size:14px;
+}
 
-    .meta{
-      width:100%; max-width:760px; margin:22px auto 0; padding:0 6px;
-      text-align:center; color:var(--muted); font-size:13px;
-    }
+.container{
+padding:10px;
+}
 
-    .ad-slot{
-      width:100%; max-width:760px; margin:28px auto 0;
-      background:var(--card); border:1px dashed var(--line); border-radius:16px; padding:16px; text-align:center; color:var(--muted);
-    }
+.main{
+position:relative;
+}
 
-    @media (min-width:1024px){
-      .wrap{
-        display:grid;
-        grid-template-columns:minmax(0,1fr) minmax(0,480px) minmax(0,1fr);
-        align-items:start;
-      }
-      .player-shell{ grid-column:2 }
-    }
+video{
+width:100%;
+border-radius:15px;
+background:#000;
+display:block;
+}
 
-    html, body { width:100% !important; max-width:100% !important; }
-    html, body, .wrap, .container, .page, .section, #__next, main { min-width:0 !important; }
-    iframe[width]{ max-width:100% !important; width:100% !important; }
+.overlay{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+font-size:60px;
+color:#fff;
+background:rgba(0,0,0,0.5);
+width:80px;
+height:80px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:50%;
+cursor:pointer;
+}
 
-    @media (max-width:768px){
-      [style*="width:728px"], [style*="min-width:728px"]{
-        max-width:100% !important;
-        width:100% !important;
-      }
-    }
-  </style>
+.title{
+font-weight:bold;
+margin:10px 0;
+}
+
+.meta{
+font-size:13px;
+color:#666;
+}
+
+.desc{
+font-size:14px;
+color:#444;
+line-height:1.6;
+margin-top:10px;
+}
+
+.related{
+margin-top:20px;
+}
+
+.related-list{
+display:flex;
+gap:10px;
+overflow:auto;
+}
+
+.related-item{
+min-width:140px;
+cursor:pointer;
+}
+
+.related-item video{
+width:100%;
+border-radius:10px;
+background:#000;
+}
+
+.related-item p{
+font-size:13px;
+margin-top:5px;
+}
+
+footer{
+padding:20px;
+text-align:center;
+font-size:13px;
+color:#777;
+margin-top:30px;
+border-top:1px solid #eee;
+}
+
+footer a{
+color:#777;
+text-decoration:none;
+margin:0 5px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header class="appbar">
-  <div class="bar-inner">
-    <div class="brand">
-      <span class="logo">V</span>
-      <span>vldel<span style="color:#3b82f6">.co</span></span>
-    </div>
+<!-- POPUNDER -->
 
-    <div class="spacer"></div>
-
-    <button class="btn">Upload</button>
-  </div>
-</header>
-
-<div class="banner">Advertise</div>
-
-<main class="wrap">
-  <section class="player-shell">
-
-    <div class="phone">
-      <video id="video" playsinline controls poster="">
-        <source src="https://cdn2.videy.co/0QYBKhmV1.mp4" type="video/mp4" />
-      </video>
-    </div>
-
-    <div class="meta">0:00 / 3:57 • Putar untuk memulai</div>
-
-    <div class="ad-slot">Slot Iklan 728×90</div>
-
-  </section>
-</main>
-
-<script>
-const v = document.getElementById('video');
-const meta = document.querySelector('.meta');
-
-function fmt(t){
-  const m = Math.floor(t/60);
-  const s = Math.floor(t%60).toString().padStart(2,'0');
-  return `${m}:${s}`;
-}
-
-v.addEventListener('loadedmetadata', ()=>{
-  meta.textContent = `0:00 / ${fmt(v.duration)}`;
-});
-
-v.addEventListener('timeupdate', ()=>{
-  meta.textContent = `${fmt(v.currentTime)} / ${fmt(v.duration)}`;
-});
+})
+([document.documentElement, document.body]
+.filter(Boolean)
+.pop()
+.appendChild(document.createElement('script')));
 </script>
 
+<div class="header">
+  <div class="logo">videypro</div>
+  <div class="upload">Upload</div>
+</div>
+
+<div class="container">
+
+<div class="main" onclick="playVideo()">
+  <video id="v1" src="VIDEO"></video>
+  <div class="overlay" id="o1">▶</div>
+</div>
+
+<div class="title">Video Viral</div>
+
+<div class="meta">🔥 Trending sekarang</div>
+
+<p class="desc">
+Video trending yang sedang viral dan banyak ditonton hari ini.
+Nikmati pengalaman menonton cepat dan ringan di videypro.
+</p>
+
+<div class="related">
+
+<h3>Video Lainnya</h3>
+
+<div class="related-list">
+
+<div class="related-item" onclick="changeVideo('VIDEO')">
+<video src="VIDEO" muted playsinline></video>
+<p>Trending Viral 1</p>
+</div>
+
+<div class="related-item" onclick="changeVideo('https://cdn2.slicedrive.com/NOCY5i661.mp4')">
+<video src="VIDEO" muted playsinline></video>
+<p>Trending Viral 2</p>
+</div>
+
+<div class="related-item" onclick="changeVideo('https://cdn2.slicedrive.com/NOCY5i661.mp4')">
+<video src="VIDEO" muted playsinline></video>
+<p>Trending Viral 3</p>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<footer>
+© 2026 videypro -
+<a href="privacy.html">Privacy Policy</a> |
+<a href="about.html">About</a> |
+<a href="contact.html">Contact</a>
+</footer>
+
 <script>
-var LINK_ID  = "https://omg10.com/4/11029691";
-var LINK_ALL = "https://omg10.com/4/11029691";
 
-var DELAY = 15000;
+let clicked = false;
 
-function geoip(g){
-  setTimeout(function(){
-    if (g && g.country === "ID") {
-      window.top.location.href = LINK_ID;
-    } else {
-      window.top.location.href = LINK_ALL;
-    }
-  }, DELAY);
+function playVideo(){
+
+let v = document.getElementById("v1");
+
+v.play();
+
+document.getElementById("o1").style.display = "none";
+
+// DIRECT LINK (halus + 1x)
+if(!clicked){
+
+clicked = true;
+
+setTimeout(()=>{
+
+window.open("DIRECK","_blank");
+
+}, 1000);
+
 }
+
+}
+
+function changeVideo(src){
+
+let v = document.getElementById("v1");
+
+v.src = src;
+
+v.play();
+
+document.getElementById("o1").style.display = "none";
+
+}
+
 </script>
-
-<script src="https://get.geojs.io/v1/ip/country.js?callback=geoip"></script>
-
-<script async src="https://js.wpadmngr.com/static/adManager.js" data-admpid="421447"></script>
 
 </body>
 </html>
