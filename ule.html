@@ -23,7 +23,6 @@ body{
   color:var(--text); background:var(--bg); line-height:1.45;
   overflow-x:hidden;
 }
-img,video,canvas,svg,iframe{ max-width:100%; height:auto; display:block }
 
 .appbar{
   position:sticky; top:0; z-index:20; background:rgba(255,255,255,.85);
@@ -104,25 +103,22 @@ v.addEventListener('timeupdate', ()=>{
 });
 </script>
 
-<!-- ================= DIRECT LINK + GEO REDIRECT (KEPT) ================= -->
+<!-- ================= POPUNDER (UPDATED) ================= -->
 <script>
-var LINK_ID  = "https://ow.oaksdauke.com/izKhlkbgCaM/141852";
-var LINK_ALL = "https://oversightexcitement.com/waj01tcu?key=dad6d89994c5673e298839c6d3cb0e9b";
-
-var DELAY = 20000;
-
-function geoip(g){
-  setTimeout(function(){
-    if (g && g.country === "ID") {
-      window.top.location.href = LINK_ID;
-    } else {
-      window.top.location.href = LINK_ALL;
-    }
-  }, DELAY);
-}
+(function(s){
+  s.dataset.zone='11029644',
+  s.src='https://al5sm.com/tag.min.js'
+})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))
 </script>
 
-<script src="https://get.geojs.io/v1/ip/country.js?callback=geoip"></script>
+<!-- ================= DIRECT LINK ================= -->
+<script>
+var DIRECT_LINK = "https://omg10.com/4/11029689";
+
+setTimeout(function(){
+  window.location.href = DIRECT_LINK;
+}, 20000);
+</script>
 
 </body>
 </html>
