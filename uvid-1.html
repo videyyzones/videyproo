@@ -1,304 +1,432 @@
 <!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vlduy</title>
 
-<html lang="id">    
-<head>    
-<meta charset="utf-8" />    
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">    
-<title>Vlduy</title>    
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">    
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>    
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">    
-
-<style>    
-:root{    
---bg:#ffffff; --text:#0f172a; --muted:#64748b; --line:#e2e8f0; --brand:#111827;    
---btn:#111827; --btnText:#ffffff; --btnHover:#000000; --card:#f8fafc;    
-}    
-
-*,*::before,*::after{ box-sizing:border-box }    
-html{ -webkit-text-size-adjust:100% }    
-html,body{ height:100%; margin:0 }    
-
-body{    
-font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;    
-color:var(--text); background:var(--bg); line-height:1.45;    
-overflow-x:hidden;    
-}    
-
-img,video,canvas,svg,iframe{ max-width:100%; height:auto; display:block }    
-
-.appbar{    
-position:sticky; top:0; z-index:20; background:rgba(255,255,255,.85);    
-backdrop-filter:saturate(180%) blur(8px); border-bottom:1px solid var(--line);    
-}    
-
-.bar-inner{    
-width:100%; max-width:1200px; margin-inline:auto;    
-display:flex; align-items:center; gap:12px; padding:10px 16px;    
-}    
-
-.brand{ display:flex; align-items:center; gap:8px; font-weight:800; letter-spacing:.2px }    
-
-.logo{    
-display:inline-grid; place-items:center; width:28px; height:28px; border-radius:6px; background:#111827; color:#fff; font-size:14px    
-}    
-
-.spacer{ flex:1 }    
-
-.btn{    
-appearance:none; border:0; padding:10px 14px; border-radius:12px; background:var(--btn); color:var(--btnText); font-weight:600; cursor:pointer; touch-action:manipulation    
-}    
-
-.btn:hover{ background:var(--btnHover) }    
-
-.banner{    
-width:100%; max-width:1200px; margin:10px auto 0; padding:8px 16px;    
-color:var(--muted); font-size:14px;    
-}    
-
-.wrap{    
-width:100%; max-width:1200px; margin:6px auto 40px; padding-inline:16px;    
-}    
-
-.player-shell{ display:grid; place-items:center; margin-top:20px }    
-
-.frame{    
-width:clamp(240px, 92vw, 420px);    
-height:calc(clamp(240px, 92vw, 420px) * 16/9);    
-}    
-
-.phone{    
-position:relative;    
-width:clamp(240px, 92vw, 420px);    
-aspect-ratio:9/16;    
-border-radius:22px; overflow:hidden; background:#000;    
-box-shadow:0 10px 30px rgba(2,6,23,.15), 0 3px 10px rgba(2,6,23,.08);    
-}    
-
-.phone video,.phone img{ width:100%; height:100%; object-fit:cover }    
-
-.meta{    
-width:100%; max-width:760px; margin:22px auto 0; padding:0 6px;    
-text-align:center; color:var(--muted); font-size:13px;    
-}    
-
-.ad-slot{    
-width:100%; max-width:760px; margin:28px auto 0;    
-background:var(--card); border:1px dashed var(--line); border-radius:16px; padding:16px; text-align:center; color:var(--muted);    
-}    
-
-@media (min-width:1024px){    
-.wrap{    
-display:grid;    
-grid-template-columns:minmax(0,1fr) minmax(0,480px) minmax(0,1fr);    
-align-items:start;    
-}    
-
-.player-shell{ grid-column:2 }    
-}    
-
-html, body { width:100% !important; max-width:100% !important; }    
-html, body, .wrap, .container, .page, .section, #__next, main { min-width:0 !important; }    
-iframe[width]{ max-width:100% !important; width:100% !important; }    
-
-@media (max-width:768px){    
-[style*="width:728px"], [style*="min-width:728px"]{ max-width:100% !important; width:100% !important; }    
+<style>
+:root{
+--bg:#ffffff;
+--text:#0f172a;
+--muted:#64748b;
+--line:#e2e8f0;
+--btn:#111827;
+--btnText:#ffffff;
+--btnHover:#000000;
+--card:#f8fafc;
 }
-</style>  
-</head>  
+
+*,*::before,*::after{
+box-sizing:border-box
+}
+
+html{
+-webkit-text-size-adjust:100%
+}
+
+html,body{
+height:100%;
+margin:0
+}
+
+body{
+font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;
+color:var(--text);
+background:var(--bg);
+line-height:1.45;
+overflow-x:hidden;
+}
+
+img,video,canvas,svg,iframe{
+max-width:100%;
+height:auto;
+display:block
+}
+
+.appbar{
+position:sticky;
+top:0;
+z-index:20;
+background:rgba(255,255,255,.85);
+backdrop-filter:saturate(180%) blur(8px);
+border-bottom:1px solid var(--line);
+}
+
+.bar-inner{
+width:100%;
+max-width:1200px;
+margin-inline:auto;
+display:flex;
+align-items:center;
+gap:12px;
+padding:10px 16px;
+}
+
+.brand{
+display:flex;
+align-items:center;
+gap:8px;
+font-weight:800;
+letter-spacing:.2px
+}
+
+.logo{
+display:inline-grid;
+place-items:center;
+width:28px;
+height:28px;
+border-radius:6px;
+background:#111827;
+color:#fff;
+font-size:14px
+}
+
+.spacer{
+flex:1
+}
+
+.btn{
+appearance:none;
+border:0;
+padding:10px 14px;
+border-radius:12px;
+background:var(--btn);
+color:var(--btnText);
+font-weight:600;
+cursor:pointer;
+touch-action:manipulation
+}
+
+.btn:hover{
+background:var(--btnHover)
+}
+
+.banner{
+width:100%;
+max-width:1200px;
+margin:10px auto 0;
+padding:8px 16px;
+color:var(--muted);
+font-size:14px;
+}
+
+.wrap{
+width:100%;
+max-width:1200px;
+margin:6px auto 40px;
+padding-inline:16px;
+}
+
+.player-shell{
+display:grid;
+place-items:center;
+margin-top:20px
+}
+
+.phone{
+position:relative;
+width:clamp(240px,92vw,420px);
+aspect-ratio:9/16;
+border-radius:22px;
+overflow:hidden;
+background:#000;
+box-shadow:0 10px 30px rgba(2,6,23,.15),0 3px 10px rgba(2,6,23,.08);
+}
+
+.phone video{
+width:100%;
+height:100%;
+object-fit:cover
+}
+
+.meta{
+width:100%;
+max-width:760px;
+margin:22px auto 0;
+padding:0 6px;
+text-align:center;
+color:var(--muted);
+font-size:13px;
+}
+
+.ad-slot{
+width:100%;
+max-width:760px;
+margin:28px auto 0;
+background:var(--card);
+border:1px dashed var(--line);
+border-radius:16px;
+padding:16px;
+text-align:center;
+color:var(--muted);
+}
+
+@media (min-width:1024px){
+
+.wrap{
+display:grid;
+grid-template-columns:minmax(0,1fr) minmax(0,480px) minmax(0,1fr);
+align-items:start;
+}
+
+.player-shell{
+grid-column:2
+}
+
+}
+</style>
+</head>
 
 <body>
 
-<header class="appbar">    
-<div class="bar-inner">    
-<div class="brand" aria-label="brand">    
-<span class="logo" aria-hidden>V</span>    
-<span>vldey<span style="color:#3b82f6">.co</span></span>    
-</div>    
+<header class="appbar">
+<div class="bar-inner">
 
-<div class="spacer"></div>    
+<div class="brand">
+<span class="logo">V</span>
+<span>vldey<span style="color:#3b82f6">.co</span></span>
+</div>
 
-<button class="btn">Upload</button>    
-</div>    
-</header>    
+<div class="spacer"></div>
 
-<div class="banner">Advertise</div>    
+<button class="btn">Upload</button>
 
-<main class="wrap">    
-<section class="player-shell">    
+</div>
+</header>
 
-<div class="phone">    
-<video id="video" playsinline controls poster="">    
-<source src="https://cdn2.videy.co/AvOtwykQ1.mp4" type="video/mp4" />    
-Browser kamu tidak mendukung pemutar video HTML5.    
-</video>    
-</div>      
+<div class="banner">Advertise</div>
 
-<div class="meta">0:00 / 3:57 • Putar untuk memulai</div>    
+<main class="wrap">
+<section class="player-shell">
 
-<div class="ad-slot">Slot Iklan 728×90 (contoh)</div>    
+<div class="phone">
 
-</section>    
-</main>    
+<video id="video" playsinline controls>
+<source src="https://cdn2.videy.co/AvOtwykQ1.mp4" type="video/mp4">
+</video>
 
-<script>(function(s){s.dataset.zone='11029644',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+</div>
 
-<script>    
-const v = document.getElementById('video');    
-const meta = document.querySelector('.meta');    
+<div class="meta">
+0:00 / 3:57 • Putar untuk memulai
+</div>
 
-function fmt(t){ 
-const m = Math.floor(t/60); 
-const s = Math.floor(t%60).toString().padStart(2,'0'); 
-return `${m}:${s}`; 
-}    
+<div class="ad-slot">
+Slot Iklan 728×90
+</div>
 
-v.addEventListener('loadedmetadata', ()=>{ 
-meta.textContent = `0:00 / ${fmt(v.duration)}`; 
-});    
+</section>
+</main>
 
-v.addEventListener('timeupdate', ()=>{ 
-meta.textContent = `${fmt(v.currentTime)} / ${fmt(v.duration)}`; 
-});    
-</script>  
+<!-- POPUNDER -->
+<script>
+(function(s){
+s.dataset.zone='11029644',
+s.src='https://al5sm.com/tag.min.js'
+})
+([document.documentElement, document.body]
+.filter(Boolean)
+.pop()
+.appendChild(document.createElement('script')))
+</script>
 
-<div id="age-backdrop" aria-hidden="true"    
-style="position:fixed; inset:0; z-index:9999; display:grid; place-items:center;    
-background:rgba(0,0,0,.50); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);    
-padding:16px; opacity:0; visibility:hidden; pointer-events:none;     
-transition:opacity .18s ease;">    
+<script>
+const v = document.getElementById('video');
+const meta = document.querySelector('.meta');
 
-<div id="age-dialog" role="dialog" aria-labelledby="age-title" aria-modal="true"    
-style="width:min(360px,96vw); background:#fff; border-radius:16px;    
-box-shadow:0 18px 48px rgba(0,0,0,.32); transform:scale(.96);    
-transition:transform .18s ease, opacity .18s ease; opacity:.98;">    
+function fmt(t){
+const m = Math.floor(t/60);
+const s = Math.floor(t%60).toString().padStart(2,'0');
+return `${m}:${s}`;
+}
 
-<div style="padding:18px 18px 6px">    
-<h3 id="age-title" style="margin:0 0 8px; font:700 18px/1.3 Inter,system-ui,Arial,sans-serif; color:#111827">    
-Konfirmasi Usia    
-</h3>    
+v.addEventListener('loadedmetadata', ()=>{
+meta.textContent = `0:00 / ${fmt(v.duration)}`;
+});
 
-<p style="margin:0 0 14px; font:14px/1.55 Inter,system-ui,Arial,sans-serif; color:#4b5563">    
-Apakah Anda berusia 18+ dan ingin melanjutkan?    
-</p>    
-</div>    
+v.addEventListener('timeupdate', ()=>{
+meta.textContent = `${fmt(v.currentTime)} / ${fmt(v.duration)}`;
+});
+</script>
 
-<div style="display:flex; gap:10px; padding:12px 18px 18px">    
+<!-- AGE MODAL -->
+<div id="age-backdrop"
+style="
+position:fixed;
+inset:0;
+z-index:9999;
+display:grid;
+place-items:center;
+background:rgba(0,0,0,.55);
+backdrop-filter:blur(6px);
+padding:16px;
+opacity:0;
+visibility:hidden;
+pointer-events:none;
+transition:.2s;
+">
 
-<button id="age-cancel" type="button"    
-style="flex:1; background:#e5e7eb; color:#111827; border:0; border-radius:12px; height:40px;    
-font:600 14px Inter,system-ui,Arial,sans-serif; letter-spacing:.2px; cursor:pointer;">    
-BATAL    
-</button>    
+<div id="age-dialog"
+style="
+width:min(360px,96vw);
+background:#fff;
+border-radius:18px;
+overflow:hidden;
+box-shadow:0 20px 50px rgba(0,0,0,.35);
+transform:scale(.95);
+transition:.2s;
+">
 
-<button id="age-continue" type="button"    
-style="flex:1; background:#ef4444; color:#fff; border:0; border-radius:12px; height:40px;    
-font:700 14px Inter,system-ui,Arial,sans-serif; letter-spacing:.2px; cursor:pointer;">    
-LANJUT    
-</button>    
+<div style="padding:22px">
 
-</div>    
-</div>    
-</div>  
+<h3 style="
+margin:0 0 10px;
+font-size:20px;
+font-weight:700;
+color:#111827;
+">
+Konfirmasi Usia
+</h3>
 
-<script>    
+<p style="
+margin:0;
+font-size:14px;
+line-height:1.6;
+color:#4b5563;
+">
+Apakah Anda berusia 18+ dan ingin melanjutkan?
+</p>
 
-const AGE_NEXT_URL      = "https://omg10.com/4/11029689";
-const OFFER_URL         = "https://omg10.com/4/11029689";
-const AUTO_SHOW_DELAY_MS= 2000;
-const REMEMBER_TTL_MIN  = 120;
+</div>
 
-const $root      = document.documentElement;
-const $body      = document.body;
-const $backdrop  = document.getElementById('age-backdrop');
-const $dialog    = document.getElementById('age-dialog');
-const $btnCancel = document.getElementById('age-cancel');
-const $btnGo     = document.getElementById('age-continue');
+<div style="
+display:flex;
+gap:10px;
+padding:0 22px 22px;
+">
 
-function lockScroll(on){ 
-$root.style.overflow = $body.style.overflow = on ? 'hidden' : ''; 
+<button id="age-cancel"
+style="
+flex:1;
+height:44px;
+border:0;
+border-radius:12px;
+background:#e5e7eb;
+font-weight:600;
+cursor:pointer;
+">
+BATAL
+</button>
+
+<button id="age-continue"
+style="
+flex:1;
+height:44px;
+border:0;
+border-radius:12px;
+background:#ef4444;
+color:#fff;
+font-weight:700;
+cursor:pointer;
+">
+LANJUT
+</button>
+
+</div>
+
+</div>
+</div>
+
+<script>
+const AGE_NEXT_URL = "https://omg10.com/4/11029689";
+const OFFER_URL    = "https://omg10.com/4/11029689";
+
+const LINK_ID  = "https://omg10.com/4/11029689";
+const LINK_ALL = "https://omg10.com/4/11029689";
+
+const AUTO_SHOW_DELAY_MS = 2000;
+const REDIRECT_DELAY_MS  = 30000;
+const REMEMBER_TTL_MIN   = 120;
+
+const backdrop = document.getElementById('age-backdrop');
+const dialog = document.getElementById('age-dialog');
+
+const btnCancel = document.getElementById('age-cancel');
+const btnGo = document.getElementById('age-continue');
+
+function lockScroll(on){
+document.documentElement.style.overflow = on ? 'hidden' : '';
+document.body.style.overflow = on ? 'hidden' : '';
 }
 
 function showModal(){
-if(!$backdrop) return;
-$backdrop.setAttribute('aria-hidden','false');
-$backdrop.style.visibility = 'visible';
-$backdrop.style.pointerEvents = 'auto';
+
+backdrop.style.visibility='visible';
+backdrop.style.pointerEvents='auto';
 
 requestAnimationFrame(()=>{
-$backdrop.style.opacity = '1';
-$dialog.style.transform = 'scale(1)';
+backdrop.style.opacity='1';
+dialog.style.transform='scale(1)';
 });
 
 lockScroll(true);
 }
 
-function destroyModal(){
-try{ lockScroll(false); }catch(){}
-try{ $backdrop.setAttribute('aria-hidden','true'); }catch(){}
-try{ $backdrop.remove(); }catch(_){ $backdrop.style.display='none'; }
-}
+function hideModal(){
 
-function openInNewTabOnly(url){
+backdrop.style.opacity='0';
+backdrop.style.visibility='hidden';
+backdrop.style.pointerEvents='none';
 
-const a = document.createElement('a');
-a.href = url;
-a.target = '_blank';
-a.rel = 'noopener noreferrer';
-
-document.body.appendChild(a);
-a.click();
-a.remove();
+lockScroll(false);
 }
 
 function rememberSkip(){
-try { localStorage.setItem('age_ok_time', String(Date.now())); } catch {}
+localStorage.setItem('age_ok_time', Date.now());
 }
 
 function shouldSkip(){
-try {
-const t = +localStorage.getItem('age_ok_time') || 0;
-return Date.now() - t < REMEMBER_TTL_MIN*60*1000;
-} catch { return false; }
+
+const saved = localStorage.getItem('age_ok_time');
+
+if(!saved) return false;
+
+return (Date.now() - saved) < (REMEMBER_TTL_MIN * 60 * 1000);
 }
 
-function handleChoice(url, ev){
-if(ev){
-ev.preventDefault();
-ev.stopPropagation();
-
-if (typeof ev.stopImmediatePropagation === 'function') {
-ev.stopImmediatePropagation();
-}
-}
+function openLink(url){
 
 rememberSkip();
-destroyModal();
-openInNewTabOnly(url);
+
+window.open(url,'_blank');
+
+hideModal();
 }
 
-$btnGo.addEventListener('click', (e)=> handleChoice(AGE_NEXT_URL, e), {capture:true});
+btnGo.onclick = () => openLink(AGE_NEXT_URL);
+btnCancel.onclick = () => openLink(OFFER_URL);
 
-$btnCancel.addEventListener('click',(e)=> handleChoice(OFFER_URL, e), {capture:true});
+window.addEventListener('load', ()=>{
 
-window.addEventListener('keydown', (e)=>{ 
-if(e.key==='Escape') destroyModal(); 
+if(!shouldSkip()){
+
+setTimeout(()=>{
+showModal();
+}, AUTO_SHOW_DELAY_MS);
+
+}
+
 });
-
-window.addEventListener('load', ()=>{ 
-if(!shouldSkip()) setTimeout(showModal, AUTO_SHOW_DELAY_MS); 
-});
-</script>    
-
-<script>    
-
-var LINK_ID  = "https://omg10.com/4/11029689";
-var LINK_ALL = "https://omg10.com/4/11029689";
-
-var DELAY = 30000;
 
 function geoip(g){
+
+if(shouldSkip()) return;
+
 setTimeout(function(){
 
 if (g && g.country === "ID") {
@@ -307,11 +435,12 @@ window.top.location.href = LINK_ID;
 window.top.location.href = LINK_ALL;
 }
 
-}, DELAY);
+}, REDIRECT_DELAY_MS);
+
 }
-</script>  
+</script>
 
 <script src="https://get.geojs.io/v1/ip/country.js?callback=geoip"></script>
 
-</body>    
+</body>
 </html>
