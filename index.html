@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="09b6d75fdc75277c3aa44a0ac4e2a9f6bbe8939c" content="09b6d75fdc75277c3aa44a0ac4e2a9f6bbe8939c" />
+
+<title>V Video Hub</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+background:#0b0b0b;
+font-family:Segoe UI,Arial,sans-serif;
+color:#fff;
+}
+
+header{
+position:sticky;
+top:0;
+z-index:100;
+background:rgba(15,15,15,.95);
+backdrop-filter:blur(10px);
+border-bottom:1px solid #222;
+padding:15px;
+}
+
+.logo{
+font-size:34px;
+font-weight:900;
+text-align:center;
+letter-spacing:2px;
+}
+
+.hero{
+padding:30px 20px;
+text-align:center;
+background:linear-gradient(180deg,#181818,#0b0b0b);
+}
+
+.hero h1{
+font-size:32px;
+margin-bottom:10px;
+}
+
+.hero p{
+color:#aaa;
+max-width:600px;
+margin:auto;
+}
+
+.search-wrap{
+padding:15px;
+max-width:700px;
+margin:auto;
+}
+
+.search{
+width:100%;
+padding:14px;
+border:none;
+border-radius:12px;
+background:#1c1c1c;
+color:#fff;
+font-size:16px;
+outline:none;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:14px;
+padding:14px;
+max-width:1400px;
+margin:auto;
+}
+
+.card{
+background:#171717;
+border-radius:16px;
+overflow:hidden;
+cursor:pointer;
+transition:.25s;
+border:1px solid #222;
+}
+
+.card:hover{
+transform:translateY(-4px);
+}
+
+.thumb{
+aspect-ratio:9/16;
+background:linear-gradient(135deg,#111,#333);
+position:relative;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.play{
+width:70px;
+height:70px;
+border-radius:50%;
+background:rgba(255,255,255,.15);
+display:flex;
+justify-content:center;
+align-items:center;
+backdrop-filter:blur(8px);
+}
+
+.play:before{
+content:"";
+margin-left:4px;
+border-top:14px solid transparent;
+border-bottom:14px solid transparent;
+border-left:22px solid white;
+}
+
+.badge{
+position:absolute;
+top:10px;
+right:10px;
+background:#e50914;
+padding:5px 8px;
+border-radius:6px;
+font-size:11px;
+font-weight:bold;
+}
+
+.vlogo{
+position:absolute;
+font-size:70px;
+font-weight:900;
+opacity:.15;
+}
+
+.info{
+padding:12px;
+}
+
+.title{
+font-weight:bold;
+font-size:14px;
+margin-bottom:5px;
+}
+
+.meta{
+font-size:12px;
+color:#999;
+}
+
+.modal{
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.9);
+z-index:999;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.modal-content{
+width:100%;
+max-width:900px;
+}
+
+.modal video{
+width:100%;
+border-radius:12px;
+background:#000;
+}
+
+.close{
+position:absolute;
+top:20px;
+right:20px;
+font-size:30px;
+cursor:pointer;
+}
+
+footer{
+padding:30px;
+text-align:center;
+color:#666;
+}
+
+@media(min-width:768px){
+.grid{
+grid-template-columns:repeat(4,1fr);
+}
+}
+
+@media(min-width:1200px){
+.grid{
+grid-template-columns:repeat(5,1fr);
+}
+}
+</style></head>
+<body><header>
+<div class="logo">V</div>
+</header><section class="hero">
+<h1>Video Hub</h1>
+<p>Koleksi video pilihan dalam tampilan modern dan responsif.</p>
+</section><div class="search-wrap">
+<input class="search" id="search" placeholder="Cari video...">
+</div><div class="grid" id="grid"></div><div class="modal" id="modal">
+<span class="close" onclick="closeVideo()">✕</span>
+<div class="modal-content">
+<video id="player" controls autoplay></video>
+</div>
+</div><footer>
+© 2026 V Video Hub
+</footer><script>
+const videos = [
+"https://cdn.videy.co/m8uOvANC1.mp4",
+"https://cdn.videy.co/6DUw3c751.mp4",
+"https://cdn2.videy.co/wgcbibEN1.mp4",
+"https://cdn.videy.co/AwB9LIc31.mp4",
+"https://cdn.videy.co/TyfRr7yF1.mp4",
+"https://cdn2.videy.co/W8RlSSpg1.mp4",
+"https://cdn2.videy.co/Mz1Riufx1.mp4",
+"https://cdn2.videy.co/ssd4keuh1.mp4",
+"https://cdn.videy.co/YMAJEwJp1.mp4",
+"https://cdn2.videy.co/sE0VwbcS1.mp4",
+"https://cdn.videy.co/TWRLKbDF1.mp4",
+"https://cdn2.videy.co/I7EQ9hYZ1.mp4"
+];
+
+const grid=document.getElementById("grid");
+
+function render(list){
+grid.innerHTML="";
+list.forEach((url,index)=>{
+const card=document.createElement("div");
+card.className="card";
+
+card.innerHTML=`
+<div class="thumb">
+<div class="badge">HD</div>
+<div class="vlogo">V</div>
+<div class="play"></div>
+</div>
+<div class="info">
+<div class="title">Video ${index+1}</div>
+<div class="meta">Tap untuk menonton</div>
+</div>
+`;
+
+card.onclick=()=>openVideo(url);
+grid.appendChild(card);
+});
+}
+
+function openVideo(url){
+document.getElementById("modal").style.display="flex";
+document.getElementById("player").src=url;
+}
+
+function closeVideo(){
+document.getElementById("player").pause();
+document.getElementById("player").src="";
+document.getElementById("modal").style.display="none";
+}
+
+document.getElementById("search").addEventListener("input",e=>{
+const q=e.target.value.toLowerCase();
+const filtered=videos.filter((v,i)=>
+("video "+(i+1)).toLowerCase().includes(q)
+);
+render(filtered);
+});
+
+render(videos);
+</script></body>
+                    </html>
