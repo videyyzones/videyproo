@@ -1,17 +1,8 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<meta name="09b6d75fdc75277c3aa44a0ac4e2a9f6bbe8939c" content="09b6d75fdc75277c3aa44a0ac4e2a9f6bbe8939c" />
-
-<title>V Video Hub</title>
-
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-
-body{
+<!DOCTYPE html><html lang="id">  <head>  
+<meta charset="UTF-8">  
+<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+<title>V Video Hub</title><style>  
+*{margin:0;padding:0;box-sizing:border-box}  body{
 background:#0b0b0b;
 font-family:Segoe UI,Arial,sans-serif;
 color:#fff;
@@ -199,37 +190,36 @@ grid-template-columns:repeat(5,1fr);
 }
 }
 </style></head>
-<body><header>
-<div class="logo">V</div>
-</header><section class="hero">
-<h1>Video Hub</h1>
-<p>Koleksi video pilihan dalam tampilan modern dan responsif.</p>
-</section><div class="search-wrap">
-<input class="search" id="search" placeholder="Cari video...">
-</div><div class="grid" id="grid"></div><div class="modal" id="modal">
-<span class="close" onclick="closeVideo()">✕</span>
-<div class="modal-content">
-<video id="player" controls autoplay></video>
-</div>
-</div><footer>
-© 2026 V Video Hub
-</footer><script>
-const videos = [
-"https://cdn.videy.co/m8uOvANC1.mp4",
-"https://cdn.videy.co/6DUw3c751.mp4",
-"https://cdn2.videy.co/wgcbibEN1.mp4",
-"https://cdn.videy.co/AwB9LIc31.mp4",
-"https://cdn.videy.co/TyfRr7yF1.mp4",
-"https://cdn2.videy.co/W8RlSSpg1.mp4",
-"https://cdn2.videy.co/Mz1Riufx1.mp4",
-"https://cdn2.videy.co/ssd4keuh1.mp4",
-"https://cdn.videy.co/YMAJEwJp1.mp4",
-"https://cdn2.videy.co/sE0VwbcS1.mp4",
-"https://cdn.videy.co/TWRLKbDF1.mp4",
-"https://cdn2.videy.co/I7EQ9hYZ1.mp4"
-];
 
-const grid=document.getElementById("grid");
+<body><header>  
+<div class="logo">V</div>  
+</header><section class="hero">  
+<h1>Video Hub</h1>  
+<p>Koleksi video pilihan dalam tampilan modern dan responsif.</p>  
+</section><div class="search-wrap">  
+<input class="search" id="search" placeholder="Cari video...">  
+</div><div class="grid" id="grid"></div><div class="modal" id="modal">  
+<span class="close" onclick="closeVideo()">✕</span>  
+<div class="modal-content">  
+<video id="player" controls autoplay></video>  
+</div>  
+</div><footer>  
+© 2026 V Video Hub  
+</footer><script>  
+const videos = [  
+"https://cdn.videy.co/m8uOvANC1.mp4",  
+"https://cdn.videy.co/6DUw3c751.mp4",  
+"https://cdn2.videy.co/wgcbibEN1.mp4",  
+"https://cdn.videy.co/AwB9LIc31.mp4",  
+"https://cdn.videy.co/TyfRr7yF1.mp4",  
+"https://cdn2.videy.co/W8RlSSpg1.mp4",  
+"https://cdn2.videy.co/Mz1Riufx1.mp4",  
+"https://cdn2.videy.co/ssd4keuh1.mp4",  
+"https://cdn.videy.co/YMAJEwJp1.mp4",  
+"https://cdn2.videy.co/sE0VwbcS1.mp4",  
+"https://cdn.videy.co/TWRLKbDF1.mp4",  
+"https://cdn2.videy.co/I7EQ9hYZ1.mp4"  
+];  const grid=document.getElementById("grid");
 
 function render(list){
 grid.innerHTML="";
@@ -238,18 +228,17 @@ const card=document.createElement("div");
 card.className="card";
 
 card.innerHTML=`
-<div class="thumb">
-<div class="badge">HD</div>
-<div class="vlogo">V</div>
-<div class="play"></div>
-</div>
-<div class="info">
-<div class="title">Video ${index+1}</div>
-<div class="meta">Tap untuk menonton</div>
-</div>
-`;
 
-card.onclick=()=>openVideo(url);
+<div class="thumb">  
+<div class="badge">HD</div>  
+<div class="vlogo">V</div>  
+<div class="play"></div>  
+</div>  
+<div class="info">  
+<div class="title">Video ${index+1}</div>  
+<div class="meta">Tap untuk menonton</div>  
+</div>  
+`;  card.onclick=()=>openVideo(url);
 grid.appendChild(card);
 });
 }
@@ -274,20 +263,6 @@ render(filtered);
 });
 
 render(videos);
-</script>
-  
-<script>
-(function(dpao){
-var d = document,
-    s = d.createElement('script'),
-    l = d.scripts[d.scripts.length - 1];
-s.settings = dpao || {};
-s.src = "\/\/slimgather.com\/cYD.9l6KbC2f5\/ltSeWaQz9jN-z\/Ex1\/M\/zWQ\/weOWSI0l3mMlTiU\/zZNUD\/EqzT";
-s.async = true;
-s.referrerPolicy = 'no-referrer-when-downgrade';
-l.parentNode.insertBefore(s, l);
-})({})
-</script>
-  
-</body>
+</script></body>
+
 </html>
