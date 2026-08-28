@@ -1,392 +1,1696 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-	<script data-cfasync="false" async type="text/javascript" src="//df.mashersjikungu.com/rmDwc1ugLmHEx/143755"></script>
-<meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Vudol</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<title>ASUPAN VIDEO VIRAL</title>
 
-  <style>
-    :root{
-      --bg:#ffffff; --text:#0f172a; --muted:#64748b; --line:#e2e8f0; --brand:#111827;
-      --btn:#111827; --btnText:#ffffff; --btnHover:#000000; --card:#f8fafc;
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:#050505;
+    color:#fff;
+}
+
+#page-landing{
+    width:100%;
+    max-width:480px;
+    margin:auto;
+    padding:18px 14px 35px;
+}
+
+.landing-card{
+    overflow:hidden;
+    background:#0b0b0b;
+    border:1px solid #2a0909;
+    border-radius:26px;
+    box-shadow:0 10px 35px rgba(0,0,0,.55);
+}
+
+.preview{
+    position:relative;
+    height:260px;
+    overflow:hidden;
+    background:
+        radial-gradient(
+            circle at center,
+            #3a0808 0,
+            #150303 42%,
+            #030303 100%
+        );
+}
+
+.preview::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0,0,0,.08),
+            rgba(0,0,0,.65)
+        );
+}
+
+.preview-content{
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    z-index:2;
+}
+
+.preview-play{
+    width:76px;
+    height:76px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#e50914;
+    color:#fff;
+    font-size:31px;
+    padding-left:4px;
+    box-shadow:
+        0 8px 30px rgba(229,9,20,.45);
+    cursor:pointer;
+    transition:.2s;
+}
+
+.preview-play:active{
+    transform:scale(.94);
+}
+
+.preview-label{
+    margin-top:14px;
+    color:#fff;
+    font-size:12px;
+    font-weight:600;
+    background:rgba(0,0,0,.65);
+    padding:6px 12px;
+    border-radius:20px;
+    border:1px solid rgba(255,255,255,.08);
+    backdrop-filter:blur(5px);
+}
+
+.preview-quality{
+    position:absolute;
+    top:13px;
+    left:13px;
+    z-index:3;
+    color:#fff;
+    background:#160303;
+    border:1px solid #5c0b0b;
+    padding:6px 10px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:700;
+}
+
+.preview-quality i{
+    color:#ff1a25;
+}
+
+.preview-count{
+    position:absolute;
+    top:13px;
+    right:13px;
+    z-index:3;
+    color:#fff;
+    background:#160303;
+    border:1px solid #5c0b0b;
+    padding:6px 10px;
+    border-radius:20px;
+    font-size:11px;
+}
+
+/* CONTENT */
+
+.landing-content{
+    padding:22px 19px 20px;
+}
+
+.title{
+    text-align:center;
+    color:#fff;
+    font-size:28px;
+    line-height:1.2;
+    font-weight:800;
+    margin-bottom:9px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#a3a3a3;
+    font-size:14px;
+    line-height:1.5;
+    margin-bottom:17px;
+}
+
+.info-row{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom:18px;
+}
+
+.info-pill{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    padding:7px 11px;
+    background:#151515;
+    color:#d4d4d4;
+    border:1px solid #292929;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:600;
+}
+
+.info-pill i{
+    color:#e50914;
+}
+
+.watch-button{
+    width:100%;
+    border:0;
+    border-radius:15px;
+    padding:16px 18px;
+    background:#e50914;
+    color:#fff;
+    font-size:17px;
+    font-weight:800;
+    cursor:pointer;
+    box-shadow:
+        0 6px 22px rgba(229,9,20,.32);
+}
+
+.watch-button:active{
+    transform:scale(.98);
+}
+
+.watch-button i{
+    margin-left:7px;
+}
+
+.tap-note{
+    text-align:center;
+    color:#737373;
+    font-size:11px;
+    margin-top:9px;
+}
+
+.feature-row{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:7px;
+    margin-top:19px;
+    padding-top:17px;
+    border-top:1px solid #242424;
+}
+
+.feature{
+    text-align:center;
+    color:#8a8a8a;
+    font-size:10px;
+}
+
+.feature i{
+    display:block;
+    margin-bottom:5px;
+    color:#e50914;
+    font-size:16px;
+}
+
+
+/* PLAYER */
+
+#page-player{
+    display:none;
+    width:100%;
+    min-height:100vh;
+    background:#080b10;
+}
+
+.player-card{
+    width:100%;
+    background:#080b10;
+    padding-bottom:25px;
+}
+
+.player-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:6px;
+    padding:12px;
+    border-bottom:1px solid #1e293b;
+}
+
+.brand{
+    color:#cbd5e1;
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:1px;
+}
+
+.badge-hd{
+    background:#2563eb;
+    color:#fff;
+    font-size:10px;
+    font-weight:800;
+    padding:5px 9px;
+    border-radius:20px;
+}
+
+.video-counter{
+    color:#cbd5e1;
+    background:#1e293b;
+    padding:5px 9px;
+    border-radius:20px;
+    font-size:10px;
+}
+
+.video-container{
+    position:relative;
+    width:100%;
+    padding-bottom:177.78%;
+    height:0;
+    overflow:hidden;
+    background:#05070b;
+}
+
+.video-container video{
+    position:absolute;
+    inset:0;
+    width:100%!important;
+    height:100%!important;
+    object-fit:contain;
+    background:#05070b;
+}
+
+.video-overlay{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(0,0,0,.4);
+    cursor:pointer;
+    z-index:10;
+}
+
+.video-overlay.hidden{
+    opacity:0;
+    pointer-events:none;
+}
+
+.video-overlay i{
+    color:#fff;
+    font-size:60px;
+}
+
+.play-text{
+    position:absolute;
+    bottom:17%;
+    color:#fff;
+    font-size:12px;
+}
+
+.controls{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    flex-wrap:wrap;
+    padding:10px 12px;
+    border-top:1px solid #1e293b;
+}
+
+.controls button{
+    border:0;
+    background:none;
+    color:#e2e8f0;
+    padding:5px;
+    cursor:pointer;
+}
+
+.progress-wrap{
+    flex:1;
+    min-width:110px;
+    display:flex;
+    align-items:center;
+    gap:7px;
+}
+
+.progress{
+    flex:1;
+    height:5px;
+    background:#1e293b;
+    border-radius:10px;
+    overflow:hidden;
+    cursor:pointer;
+}
+
+.progress-fill{
+    width:0;
+    height:100%;
+    background:#2563eb;
+}
+
+.time{
+    color:#94a3b8;
+    font-size:10px;
+    min-width:72px;
+    text-align:center;
+}
+
+.volume{
+    display:flex;
+    align-items:center;
+}
+
+.volume input{
+    width:40px;
+}
+
+.next-btn{
+    background:#2563eb!important;
+    color:#fff!important;
+    border-radius:20px!important;
+    padding:7px 12px!important;
+    font-weight:700;
+}
+
+.status-box{
+    margin:12px;
+    padding:14px;
+    border-radius:14px;
+    border:1px solid #1e293b;
+    background:#111827;
+}
+
+.status-title{
+    color:#64748b;
+    font-size:10px;
+    font-weight:800;
+    margin-bottom:5px;
+}
+
+.status-message{
+    color:#cbd5e1;
+    font-size:13px;
+    line-height:1.5;
+}
+
+
+/* VIDEO LIST */
+
+.video-list{
+    padding:0 12px;
+}
+
+.list-title{
+    color:#94a3b8;
+    font-size:11px;
+    font-weight:800;
+    margin-bottom:8px;
+}
+
+.video-item{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:10px;
+    margin-bottom:7px;
+    background:#111827;
+    border:1px solid #1e293b;
+    border-radius:13px;
+    cursor:pointer;
+}
+
+.video-item.active{
+    border-color:#2563eb;
+}
+
+.video-icon{
+    width:38px;
+    height:38px;
+    flex:none;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:10px;
+    background:#1e293b;
+    color:#fff;
+}
+
+.video-info{
+    flex:1;
+}
+
+.video-info strong{
+    display:block;
+    color:#e2e8f0;
+    font-size:12px;
+}
+
+.video-info span{
+    color:#64748b;
+    font-size:10px;
+}
+
+.video-arrow{
+    color:#64748b;
+}
+
+.after-video{
+    display:none;
+    margin:12px;
+    padding:15px;
+    background:#111827;
+    border:1px solid #1e293b;
+    border-radius:14px;
+    text-align:center;
+}
+
+.after-video.show{
+    display:block;
+}
+
+.after-video h3{
+    color:#fff;
+    font-size:16px;
+    margin-bottom:6px;
+}
+
+.after-video p{
+    color:#94a3b8;
+    font-size:12px;
+    margin-bottom:10px;
+}
+
+.after-video button{
+    width:100%;
+    padding:12px;
+    border:0;
+    border-radius:25px;
+    background:#2563eb;
+    color:#fff;
+    font-weight:700;
+}
+
+.footer{
+    color:#475569;
+    text-align:center;
+    font-size:10px;
+    margin:15px 12px 0;
+    padding-top:13px;
+    border-top:1px solid #1e293b;
+}
+
+.back{
+    display:block;
+    margin:auto;
+    background:none;
+    border:0;
+    color:#64748b;
+    padding:12px;
+}
+
+
+/* AGE MODAL */
+
+.age-modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:99999;
+    align-items:center;
+    justify-content:center;
+    padding:18px;
+    background:rgba(0,0,0,.78);
+}
+
+.age-modal.show{
+    display:flex;
+}
+
+.age-box{
+    width:100%;
+    max-width:390px;
+    background:#fff;
+    border-radius:22px;
+    padding:23px 19px 18px;
+    text-align:center;
+    box-shadow:0 20px 60px rgba(0,0,0,.35);
+}
+
+.age-icon{
+    width:58px;
+    height:58px;
+    margin:0 auto 12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    background:#fef2f2;
+    color:#dc2626;
+    font-size:24px;
+}
+
+.age-box h2{
+    color:#111827;
+    font-size:21px;
+    margin-bottom:8px;
+}
+
+.age-box p{
+    color:#64748b;
+    font-size:13px;
+    line-height:1.5;
+    margin-bottom:16px;
+}
+
+.age-actions{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.age-confirm,
+.age-smartlink{
+    width:100%;
+    border:0;
+    border-radius:13px;
+    padding:13px;
+    font-size:14px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.age-confirm{
+    background:#111827;
+    color:#fff;
+}
+
+.age-smartlink{
+    background:#eff6ff;
+    color:#1d4ed8;
+    border:1px solid #bfdbfe;
+}
+
+.age-cancel{
+    border:0;
+    background:none;
+    color:#64748b;
+    padding:9px;
+    cursor:pointer;
+}
+
+.age-note{
+    color:#9ca3af;
+    font-size:9px;
+    line-height:1.4;
+    margin-top:10px;
+}
+
+
+/* MOBILE */
+
+@media(max-width:380px){
+
+    .preview{
+        height:230px;
     }
 
-    /* ===== RESET & BASE ===== */
-    *,*::before,*::after{ box-sizing:border-box }
-    html{ -webkit-text-size-adjust:100% }
-    html,body{ height:100%; margin:0 }
-    body{
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;
-      color:var(--text); background:var(--bg); line-height:1.45;
-      overflow-x:hidden; /* cegah melebar */
-    }
-    img,video,canvas,svg,iframe{ max-width:100%; height:auto; display:block }
-
-    /* ===== APP BAR ===== */
-    .appbar{
-      position:sticky; top:0; z-index:20; background:rgba(255,255,255,.85);
-      backdrop-filter:saturate(180%) blur(8px); border-bottom:1px solid var(--line);
-    }
-    .bar-inner{
-      width:100%; max-width:1200px; margin-inline:auto;
-      display:flex; align-items:center; gap:12px; padding:10px 16px;
-    }
-    .brand{ display:flex; align-items:center; gap:8px; font-weight:800; letter-spacing:.2px }
-    .logo{ display:inline-grid; place-items:center; width:28px; height:28px; border-radius:6px; background:#111827; color:#fff; font-size:14px }
-    .spacer{ flex:1 }
-    .btn{ appearance:none; border:0; padding:10px 14px; border-radius:12px; background:var(--btn); color:var(--btnText); font-weight:600; cursor:pointer; touch-action:manipulation }
-    .btn:hover{ background:var(--btnHover) }
-
-    /* ===== BANNER INFO ===== */
-    .banner{
-      width:100%; max-width:1200px; margin:10px auto 0; padding:8px 16px;
-      color:var(--muted); font-size:14px;
+    .title{
+        font-size:25px;
     }
 
-    /* ===== LAYOUT ===== */
-    .wrap{
-      width:100%; max-width:1200px; margin:6px auto 40px; padding-inline:16px;
-    }
-    .player-shell{ display:grid; place-items:center; margin-top:20px }
-
-    /* Elemen ‘ponsel/video’ aman di HP */
-    .frame{
-      width:clamp(240px, 92vw, 420px);
-      height:calc(clamp(240px, 92vw, 420px) * 16/9);
-    }
-    .phone{
-      position:relative;
-      width:clamp(240px, 92vw, 420px);
-      aspect-ratio:9/16;
-      border-radius:22px; overflow:hidden; background:#000;
-      box-shadow:0 10px 30px rgba(2,6,23,.15), 0 3px 10px rgba(2,6,23,.08);
-    }
-    .phone video,.phone img{ width:100%; height:100%; object-fit:cover }
-
-    /* Footer meta */
-    .meta{
-      width:100%; max-width:760px; margin:22px auto 0; padding:0 6px;
-      text-align:center; color:var(--muted); font-size:13px;
+    .landing-content{
+        padding:19px 15px;
     }
 
-    /* Slot iklan dummy di halaman (bukan popup) */
-    .ad-slot{
-      width:100%; max-width:760px; margin:28px auto 0;
-      background:var(--card); border:1px dashed var(--line); border-radius:16px; padding:16px; text-align:center; color:var(--muted);
-    }
-
-    /* ===== DESKTOP ENHANCEMENT ===== */
-    @media (min-width:1024px){
-      .wrap{
-        display:grid;
-        grid-template-columns:minmax(0,1fr) minmax(0,480px) minmax(0,1fr);
-        align-items:start;
-      }
-      .player-shell{ grid-column:2 }
-    }
-
-    /* ===== POPUP GATE (tema gelap) ===== */
-    :root{
-      --card-dark:#0f172a; --text-dark:#e5e7eb; --muted-dark:#94a3b8; --line-dark:#1e293b;
-    }
-    #gate-overlay{
-      position:fixed; inset:0; background:rgba(2,6,23,.6);
-      backdrop-filter: blur(3px) saturate(130%); z-index:9998;
-    }
-    #gate-modal{
-      position:fixed; inset:0; z-index:9999;
-      display:flex; align-items:center; justify-content:center; padding:16px;
-    }
-    .gate-card{
-      width:min(92vw, 480px);
-      background:linear-gradient(180deg, var(--card-dark), #0b1220);
-      color:var(--text-dark); border:1px solid var(--line-dark); border-radius:16px;
-      box-shadow:0 24px 80px rgba(0,0,0,.45);
-      padding:20px; position:relative;
-    }
-    .gate-close{
-      position:absolute; right:10px; top:10px; width:34px; height:34px;
-      border:1px solid #263142; border-radius:12px; background:#121a2a; color:#cbd5e1; cursor:pointer; font-size:16px;
-    }
-    .gate-header h3{ margin:6px 0 4px; font-size:1.2rem }
-    .gate-sub{ margin:0 0 12px; color:var(--muted-dark) }
-    .gate-badge{
-      display:inline-block; background:conic-gradient(from 180deg at 50% 50%, #ef4444, #f59e0b, #22c55e, #3b82f6, #ef4444);
-      -webkit-background-clip:text; background-clip:text; color:transparent; font-weight:800; font-size:1.1rem;
-      border:1px solid #263142; padding:6px 10px; border-radius:10px;
-    }
-    .gate-icon{ font-size:28px }
-    .gate-check{ display:flex; gap:.6rem; align-items:flex-start; font-size:.98rem; margin:.25rem 0 1rem }
-    .gate-check input{ transform:translateY(3px) }
-    .gate-actions{ display:flex; gap:.6rem }
-    .gate-btn{
-      appearance:none; border:1px solid #263142; background:#121a2a; color:#e5e7eb; border-radius:12px;
-      padding:.65rem 1rem; font-weight:700; cursor:pointer; letter-spacing:.3px;
-    }
-    .gate-btn:disabled{ opacity:.5; cursor:not-allowed }
-    .gate-btn.ghost{ background:transparent; color:#cbd5e1 }
-    .gate-footnote{ margin:.8rem 0 0; font-size:.85rem; color:#93a4bd; display:flex; align-items:center; gap:.4rem }
-    .dot{ width:6px; height:6px; border-radius:50%; background:#22c55e; display:inline-block }
-
-    /* Ad slot di popup: scale 728×90 agar muat HP */
-    #ad-slot-wrap{ width:100%; overflow:hidden; border-top:1px dashed var(--line-dark); margin-top:8px; padding-top:8px; }
-    #ad-slot{ width:728px; transform-origin:top left }
-    @media (max-width:760px){
-      #ad-slot{ transform:scale(calc((100vw - 72px)/728)); }
-    }
-
-    /* ===== MOBILE FIX PACK (override bandel) ===== */
-    html, body { width:100% !important; max-width:100% !important; }
-    html, body, .wrap, .container, .page, .section, #__next, main { min-width:0 !important; }
-    iframe[width]{ max-width:100% !important; width:100% !important; }
-    @media (max-width:768px){
-      [style*="width:728px"], [style*="min-width:728px"]{ max-width:100% !important; width:100% !important; }
-    }
-  </style>
+}
+</style>
 </head>
 
 <body>
-  <!-- Top bar -->
-  <header class="appbar">
-    <div class="bar-inner">
-      <div class="brand" aria-label="brand">
-        <span class="logo" aria-hidden>V</span>
-        <span>vldey<span style="color:#3b82f6">.co</span></span>
-      </div>
-      <div class="spacer"></div>
-      <button class="btn">Upload</button>
+
+<!-- LANDING -->
+
+<div id="page-landing">
+
+<div class="landing-card">
+
+    <div class="preview">
+
+        <div class="preview-quality">
+            <i class="fas fa-hd"></i> HD
+        </div>
+
+        <div class="preview-count">
+            6 Videos
+        </div>
+
+        <div class="preview-content">
+
+            <div class="preview-play" id="playIcon">
+                <i class="fas fa-play"></i>
+            </div>
+
+            <div class="preview-label">
+                Tap to watch
+            </div>
+
+        </div>
+
     </div>
-  </header>
 
-  <div class="banner">Advertise</div>
-	
-  <!-- ===== MAIN CONTENT ===== -->
-  <main class="wrap">
-    <section class="player-shell">
-      <div class="phone">
-        <video id="video" playsinline controls poster="">
-          <source src="https://cdn2.videy.co/CMFbSpp01.mp4" type="video/mp4" />
-          Browser kamu tidak mendukung pemutar video HTML5.
-        </video>
-	
-      </div>
 
-      <div class="meta">0:00 / 3:57 • Putar untuk memulai</div>
-      <div class="ad-slot">Slot Iklan 728×90 (contoh)</div>
-    </section>
-  </main>
+    <div class="landing-content">
 
-  <script>
-    // Update teks durasi kecil
-    const v = document.getElementById('video');
-    const meta = document.querySelector('.meta');
-    function fmt(t){ const m = Math.floor(t/60); const s = Math.floor(t%60).toString().padStart(2,'0'); return `${m}:${s}`; }
-    v.addEventListener('loadedmetadata', ()=>{ meta.textContent = `0:00 / ${fmt(v.duration)}`; });
-    v.addEventListener('timeupdate',     ()=>{ meta.textContent = `${fmt(v.currentTime)} / ${fmt(v.duration)}`; });
-  </script>
+        <h1 class="title">
+            ASUPAN VIDEO VIRAL
+        </h1>
 
-  <!-- ========== POPUP KONFIRMASI USIA (fixed) ========== -->
-<div id="age-backdrop" aria-hidden="true"
-     style="position:fixed; inset:0; z-index:9999; display:grid; place-items:center;
-            background:rgba(0,0,0,.50); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
-            padding:16px; opacity:0; visibility:hidden; pointer-events:none; 
-            transition:opacity .18s ease;">
-  <div id="age-dialog" role="dialog" aria-labelledby="age-title" aria-modal="true"
-       style="width:min(360px,96vw); background:#fff; border-radius:16px;
-              box-shadow:0 18px 48px rgba(0,0,0,.32); transform:scale(.96);
-              transition:transform .18s ease, opacity .18s ease; opacity:.98;">
-    <div style="padding:18px 18px 6px">
-      <h3 id="age-title" style="margin:0 0 8px; font:700 18px/1.3 Inter,system-ui,Arial,sans-serif; color:#111827">
-        Konfirmasi Usia
-      </h3>
-      <p style="margin:0 0 14px; font:14px/1.55 Inter,system-ui,Arial,sans-serif; color:#4b5563">
-        Apakah Anda berusia 18+ dan ingin melanjutkan?
-      </p>
+        <p class="subtitle">
+            Pilih lanjut untuk membuka halaman video.
+        </p>
+
+
+        <div class="info-row">
+
+            <div class="info-pill">
+                <i class="fas fa-film"></i>
+                6 Video
+            </div>
+
+            <div class="info-pill">
+                <i class="fas fa-video"></i>
+                HD 1080p
+            </div>
+
+            <div class="info-pill">
+                <i class="fas fa-mobile-alt"></i>
+                Mobile
+            </div>
+
+        </div>
+
+
+        <button class="watch-button" id="btnContinue">
+
+            <i class="fas fa-play"></i>
+
+            TONTON SEKARANG
+
+            <i class="fas fa-arrow-right"></i>
+
+        </button>
+
+
+        <div class="tap-note">
+            Ketuk sekali untuk melanjutkan
+        </div>
+
+
+        <div class="feature-row">
+
+            <div class="feature">
+                <i class="fas fa-video"></i>
+                HD Quality
+            </div>
+
+            <div class="feature">
+                <i class="fas fa-mobile-alt"></i>
+                Mobile Friendly
+            </div>
+
+            <div class="feature">
+                <i class="fas fa-list"></i>
+                6 Video
+            </div>
+
+        </div>
+
     </div>
-    <div style="display:flex; gap:10px; padding:12px 18px 18px">
-      <button id="age-cancel" type="button"
-        style="flex:1; background:#e5e7eb; color:#111827; border:0; border-radius:12px; height:40px;
-               font:600 14px Inter,system-ui,Arial,sans-serif; letter-spacing:.2px; cursor:pointer;">
-        BATAL
-      </button>
-      <button id="age-continue" type="button"
-        style="flex:1; background:#ef4444; color:#fff; border:0; border-radius:12px; height:40px;
-               font:700 14px Inter,system-ui,Arial,sans-serif; letter-spacing:.2px; cursor:pointer;">
-        LANJUT
-      </button>
-    </div>
-  </div>
+
 </div>
 
+</div>
+
+
+<!-- PLAYER -->
+
+<div id="page-player">
+
+<div class="player-card">
+
+    <div class="player-header">
+
+        <span class="brand">
+            VIDEOPLAYER
+        </span>
+
+        <span class="badge-hd">
+            HD
+        </span>
+
+        <span class="video-counter" id="videoCounter">
+            1 / 6
+        </span>
+
+    </div>
+
+
+    <div class="video-container">
+
+        <video id="mainVideo"
+               playsinline
+               preload="metadata">
+
+            <source src="" type="video/mp4">
+
+            Browser tidak mendukung video.
+
+        </video>
+
+
+        <div class="video-overlay" id="videoOverlay">
+
+            <i class="fas fa-play-circle"></i>
+
+            <span class="play-text">
+                ▶ Ketuk untuk memutar
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="controls">
+
+        <button id="playPauseBtn">
+            <i class="fas fa-play"></i>
+        </button>
+
+
+        <div class="progress-wrap">
+
+            <div class="progress" id="progressBar">
+
+                <div class="progress-fill"
+                     id="progressFill">
+                </div>
+
+            </div>
+
+            <span class="time" id="timeDisplay">
+                00:00 / 00:00
+            </span>
+
+        </div>
+
+
+        <div class="volume">
+
+            <button id="muteBtn">
+                <i class="fas fa-volume-up"></i>
+            </button>
+
+            <input
+                type="range"
+                id="volumeSlider"
+                min="0"
+                max="1"
+                step="0.05"
+                value="0.8">
+
+        </div>
+
+
+        <button class="next-btn" id="btnNext">
+
+            <i class="fas fa-forward"></i>
+            Next
+
+        </button>
+
+    </div>
+
+
+    <div class="status-box" id="verificationBox">
+
+        <div class="status-title">
+            VIDEO PLAYER
+        </div>
+
+        <div class="status-message">
+            Ketuk video untuk mulai menonton.
+        </div>
+
+    </div>
+
+
+    <div class="after-video" id="afterVideo">
+
+        <h3>
+            Video selesai
+        </h3>
+
+        <p>
+            Lanjutkan ke video berikutnya.
+        </p>
+
+        <button id="afterNext">
+
+            <i class="fas fa-forward"></i>
+            Watch Next Video
+
+        </button>
+
+    </div>
+
+
+    <div class="video-list">
+
+        <div class="list-title">
+            MORE VIDEOS
+        </div>
+
+        <div id="videoListContainer"></div>
+
+    </div>
+
+
+    <div class="footer">
+        Video player
+    </div>
+
+
+    <button class="back" id="btnBack">
+        ← Kembali ke halaman awal
+    </button>
+
+</div>
+
+</div>
+
+
+<!-- AGE MODAL -->
+
+<div class="age-modal" id="ageModal">
+
+<div class="age-box">
+
+    <div class="age-icon">
+        <i class="fas fa-user-check"></i>
+    </div>
+
+    <h2>
+        Konfirmasi Usia
+    </h2>
+
+    <p>
+        Halaman berikut dapat berisi konten yang ditujukan
+        untuk pengguna berusia 18 tahun atau lebih.
+        Pastikan Anda memenuhi batas usia tersebut.
+    </p>
+
+
+    <div class="age-actions">
+
+        <button class="age-confirm" id="ageConfirm">
+
+            <i class="fas fa-check"></i>
+
+            Saya 18+ — Lanjut
+
+        </button>
+
+
+        <button class="age-smartlink" id="ageSmartlink">
+
+            <i class="fas fa-external-link-alt"></i>
+
+            Buka Tautan Eksternal
+
+        </button>
+
+
+        <button class="age-cancel" id="ageCancel">
+            Batal
+        </button>
+
+    </div>
+
+
+    <div class="age-note">
+        Tautan eksternal dapat membuka halaman baru.
+    </div>
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+     POPUNDER BARU
+     ========================================================= -->
+
+<script src="https://alwaysmulticulturallanding.com/67/b6/cb/67b6cb018d5b2d5878eb02a9053fca80.js"></script>
+	
+
 <script>
-/* ================== KONFIG ================== */
-const AGE_NEXT_URL      = "https://so.riantlyfolded.com/ix93B0kgGtf8CUTy/143756";
-const OFFER_URL         = "https://so.riantlyfolded.com/ix93B0kgGtf8CUTy/143756";
-const AUTO_SHOW_DELAY_MS= 10000;
-const REMEMBER_TTL_MIN  = 120;
-/* ============================================ */
 
-const $root      = document.documentElement;
-const $body      = document.body;
-const $backdrop  = document.getElementById('age-backdrop');
-const $dialog    = document.getElementById('age-dialog');
-const $btnCancel = document.getElementById('age-cancel');
-const $btnGo     = document.getElementById('age-continue');
+(function(){
 
-function lockScroll(on){ $root.style.overflow = $body.style.overflow = on ? 'hidden' : ''; }
+"use strict";
 
-function showModal(){
-  if(!$backdrop) return;
-  $backdrop.setAttribute('aria-hidden','false');
-  $backdrop.style.visibility = 'visible';
-  $backdrop.style.pointerEvents = 'auto';
-  requestAnimationFrame(()=>{
-    $backdrop.style.opacity = '1';
-    $dialog.style.transform = 'scale(1)';
-  });
-  lockScroll(true);
+
+/* =========================================================
+   SMARTLINK BARU
+   ========================================================= */
+
+const ADSTERRA_SMARTLINK =
+"https://alwaysmulticulturallanding.com/dq1z27n8?key=c12099defb60f7b706787e1de5818ac4";
+
+
+/* 6 VIDEO */
+
+const VIDEO_LIST = [
+
+{
+    title:"VIRAL 1",
+    src:""
+},
+
+{
+    title:"VIRAL 2",
+    src:""
+},
+
+{
+    title:"VIRAL 3",
+    src:""
+},
+
+{
+    title:"VIRAL 4",
+    src:""
+},
+
+{
+    title:"VIRAL 5",
+    src:""
+},
+
+{
+    title:"VIRAL 6",
+    src:""
 }
 
-function destroyModal(){
-  try{ lockScroll(false); }catch(_){}
-  try{ $backdrop.setAttribute('aria-hidden','true'); }catch(_){}
-  try{ $backdrop.remove(); }catch(_){ $backdrop.style.display='none'; }
+];
+
+
+/* ELEMENT */
+
+const landing =
+document.getElementById("page-landing");
+
+const player =
+document.getElementById("page-player");
+
+const btnContinue =
+document.getElementById("btnContinue");
+
+const playIcon =
+document.getElementById("playIcon");
+
+const btnBack =
+document.getElementById("btnBack");
+
+const video =
+document.getElementById("mainVideo");
+
+const videoOverlay =
+document.getElementById("videoOverlay");
+
+const videoCounter =
+document.getElementById("videoCounter");
+
+const playPauseBtn =
+document.getElementById("playPauseBtn");
+
+const progressBar =
+document.getElementById("progressBar");
+
+const progressFill =
+document.getElementById("progressFill");
+
+const timeDisplay =
+document.getElementById("timeDisplay");
+
+const muteBtn =
+document.getElementById("muteBtn");
+
+const volumeSlider =
+document.getElementById("volumeSlider");
+
+const btnNext =
+document.getElementById("btnNext");
+
+const verificationBox =
+document.getElementById("verificationBox");
+
+const afterVideo =
+document.getElementById("afterVideo");
+
+const afterNext =
+document.getElementById("afterNext");
+
+const videoListContainer =
+document.getElementById("videoListContainer");
+
+
+/* AGE */
+
+const ageModal =
+document.getElementById("ageModal");
+
+const ageConfirm =
+document.getElementById("ageConfirm");
+
+const ageSmartlink =
+document.getElementById("ageSmartlink");
+
+const ageCancel =
+document.getElementById("ageCancel");
+
+
+/* STATE */
+
+let currentIndex = 0;
+let pendingVideoIndex = null;
+
+
+/* SMARTLINK */
+
+function openSmartlink(){
+
+    window.open(
+        ADSTERRA_SMARTLINK,
+        "_blank",
+        "noopener,noreferrer"
+    );
+
 }
 
-/* === HANYA buka tab baru, JANGAN redirect halaman sekarang === */
-function openInNewTabOnly(url){
-  const a = document.createElement('a');
-  a.href = url;
-  a.target = '_blank';
-  a.rel = 'noopener noreferrer';
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
+
+/* AGE MODAL */
+
+function requestAgeConfirmation(index){
+
+    pendingVideoIndex = index;
+
+    ageModal.classList.add("show");
+
 }
 
-/* === Simpan TTL agar popup tak muncul lagi === */
-function rememberSkip(){
-  try { localStorage.setItem('age_ok_time', String(Date.now())); } catch {}
-}
-function shouldSkip(){
-  try {
-    const t = +localStorage.getItem('age_ok_time') || 0;
-    return Date.now() - t < REMEMBER_TTL_MIN*60*1000;
-  } catch { return false; }
+
+function closeAgeModal(){
+
+    ageModal.classList.remove("show");
+
+    pendingVideoIndex = null;
+
 }
 
-(function() {
-    // === MULTI-LINK SMART POPUNDER ===
-    // Mode: roundrobin
-    var popunderLinks = ["https://so.riantlyfolded.com/ix93B0kgGtf8CUTy/143756"];
-    var mode = "roundrobin";
-    var hasOpened = false;
-    var currentIndex = 0;
-    var usedIndices = [];
-    
-    function getNextUrl() {
-        if (popunderLinks.length === 0) return null;
-        
-        if (mode === "random") {
-            var randomIndex = Math.floor(Math.random() * popunderLinks.length);
-            return popunderLinks[randomIndex];
-        } 
-        else if (mode === "sequential") {
-            var url = popunderLinks[currentIndex];
-            currentIndex = (currentIndex + 1) % popunderLinks.length;
-            return url;
-        } 
-        else {
-            var url = popunderLinks[currentIndex];
-            currentIndex = (currentIndex + 1) % popunderLinks.length;
-            return url;
+
+/* AGE CONFIRM */
+
+ageConfirm.addEventListener(
+    "click",
+    function(){
+
+        const index =
+            pendingVideoIndex;
+
+        openSmartlink();
+
+        closeAgeModal();
+
+        if(index !== null){
+
+            loadVideo(index);
+
         }
+
     }
-    
-    function openPopunder() {
-        if (hasOpened) return;
-        
-        var targetUrl = getNextUrl();
-        if (!targetUrl) return;
-        
-        hasOpened = true;
-        var newWindow = window.open(targetUrl, '_blank');
-        
-        if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
-            console.warn("Popup blocker mungkin aktif, tapi popunder tetap cerdas.");
+);
+
+
+/* SMARTLINK SAJA */
+
+ageSmartlink.addEventListener(
+    "click",
+    function(){
+
+        openSmartlink();
+
+    }
+);
+
+
+/* CANCEL */
+
+ageCancel.addEventListener(
+    "click",
+    function(){
+
+        closeAgeModal();
+
+    }
+);
+
+
+/* VIDEO LIST */
+
+function renderVideoList(){
+
+    videoListContainer.innerHTML = "";
+
+    VIDEO_LIST.forEach(
+        function(item,index){
+
+            const div =
+                document.createElement("div");
+
+            div.className =
+                "video-item";
+
+            div.innerHTML = `
+
+                <div class="video-icon">
+                    <i class="fas fa-play"></i>
+                </div>
+
+                <div class="video-info">
+
+                    <strong>
+                        ${item.title}
+                    </strong>
+
+                    <span>
+                        Video ${index+1} dari ${VIDEO_LIST.length}
+                    </span>
+
+                </div>
+
+                <div class="video-arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+
+            `;
+
+
+            div.addEventListener(
+                "click",
+                function(){
+
+                    requestAgeConfirmation(index);
+
+                }
+            );
+
+
+            videoListContainer.appendChild(div);
+
         }
-    }
-    
-    function addGlobalListener() {
-        var events = ['click', 'touchstart', 'keydown'];
-        var interactionDone = false;
-        
-        function onUserInteraction() {
-            if (!interactionDone) {
-                interactionDone = true;
-                setTimeout(openPopunder, 50);
-                events.forEach(function(ev) {
-                    document.removeEventListener(ev, onUserInteraction);
-                });
-                window.removeEventListener('scroll', onUserInteraction);
-            }
+    );
+
+}
+
+
+/* ACTIVE VIDEO */
+
+function updateActiveItem(){
+
+    const items =
+        document.querySelectorAll(".video-item");
+
+    items.forEach(
+        function(item,index){
+
+            item.classList.toggle(
+                "active",
+                index === currentIndex
+            );
+
         }
-        
-        events.forEach(function(ev) {
-            document.addEventListener(ev, onUserInteraction);
-        });
-        window.addEventListener('scroll', onUserInteraction);
+    );
+
+}
+
+
+/* LOAD VIDEO */
+
+function loadVideo(index){
+
+    if(!VIDEO_LIST[index]){
+        return;
     }
-    
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', addGlobalListener);
-    } else {
-        addGlobalListener();
+
+    currentIndex = index;
+
+    const source =
+        video.querySelector("source");
+
+    source.src =
+        VIDEO_LIST[index].src;
+
+    video.load();
+
+    videoCounter.textContent =
+        (index+1) +
+        " / " +
+        VIDEO_LIST.length;
+
+    progressFill.style.width =
+        "0%";
+
+    timeDisplay.textContent =
+        "00:00 / 00:00";
+
+    videoOverlay.classList.remove("hidden");
+
+    playPauseBtn.innerHTML =
+        '<i class="fas fa-play"></i>';
+
+    afterVideo.classList.remove("show");
+
+    verificationBox.innerHTML = `
+
+        <div class="status-title">
+            VIDEO PLAYER
+        </div>
+
+        <div class="status-message">
+            Ketuk video untuk mulai menonton.
+        </div>
+
+    `;
+
+    updateActiveItem();
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* SHOW PLAYER */
+
+function showPlayer(){
+
+    landing.style.display =
+        "none";
+
+    player.style.display =
+        "block";
+
+    document.body.style.background =
+        "#080b10";
+
+    loadVideo(0);
+
+    window.scrollTo(0,0);
+
+}
+
+
+/* LANDING BUTTON */
+
+btnContinue.addEventListener(
+    "click",
+    function(){
+
+        openSmartlink();
+
+        showPlayer();
+
     }
+);
+
+
+playIcon.addEventListener(
+    "click",
+    function(){
+
+        openSmartlink();
+
+        showPlayer();
+
+    }
+);
+
+
+/* BACK */
+
+btnBack.addEventListener(
+    "click",
+    function(){
+
+        video.pause();
+
+        player.style.display =
+            "none";
+
+        landing.style.display =
+            "block";
+
+        document.body.style.background =
+            "#050505";
+
+        window.scrollTo(0,0);
+
+    }
+);
+
+
+/* NEXT */
+
+function nextVideo(){
+
+    const next =
+        (currentIndex + 1) %
+        VIDEO_LIST.length;
+
+    requestAgeConfirmation(next);
+
+}
+
+
+btnNext.addEventListener(
+    "click",
+    function(e){
+
+        e.stopPropagation();
+
+        nextVideo();
+
+    }
+);
+
+
+afterNext.addEventListener(
+    "click",
+    function(){
+
+        nextVideo();
+
+    }
+);
+
+
+/* PLAY / PAUSE */
+
+function playVideo(){
+
+    video.play().then(
+        function(){
+
+            videoOverlay.classList.add(
+                "hidden"
+            );
+
+            playPauseBtn.innerHTML =
+                '<i class="fas fa-pause"></i>';
+
+            verificationBox.innerHTML = `
+
+                <div class="status-title">
+                    PLAYING
+                </div>
+
+                <div class="status-message">
+                    Video sedang diputar.
+                </div>
+
+            `;
+
+        }
+    ).catch(
+        function(){}
+    );
+
+}
+
+
+function pauseVideo(){
+
+    video.pause();
+
+    videoOverlay.classList.remove(
+        "hidden"
+    );
+
+    playPauseBtn.innerHTML =
+        '<i class="fas fa-play"></i>';
+
+}
+
+
+function togglePlay(){
+
+    if(video.paused){
+
+        playVideo();
+
+    }else{
+
+        pauseVideo();
+
+    }
+
+}
+
+
+playPauseBtn.addEventListener(
+    "click",
+    function(e){
+
+        e.stopPropagation();
+
+        togglePlay();
+
+    }
+);
+
+
+videoOverlay.addEventListener(
+    "click",
+    function(){
+
+        playVideo();
+
+    }
+);
+
+
+/* VIDEO END */
+
+video.addEventListener(
+    "ended",
+    function(){
+
+        afterVideo.classList.add(
+            "show"
+        );
+
+    }
+);
+
+
+/* PROGRESS */
+
+video.addEventListener(
+    "timeupdate",
+    function(){
+
+        if(
+            video.duration &&
+            isFinite(video.duration)
+        ){
+
+            const percent =
+                (video.currentTime /
+                 video.duration) * 100;
+
+            progressFill.style.width =
+                percent + "%";
+
+        }
+
+        updateTime();
+
+    }
+);
+
+
+function updateTime(){
+
+    timeDisplay.textContent =
+        formatTime(video.currentTime) +
+        " / " +
+        formatTime(video.duration);
+
+}
+
+
+function formatTime(seconds){
+
+    if(
+        isNaN(seconds) ||
+        !isFinite(seconds)
+    ){
+
+        return "00:00";
+
+    }
+
+    const minutes =
+        Math.floor(seconds / 60);
+
+    const secs =
+        Math.floor(seconds % 60);
+
+    return(
+        String(minutes).padStart(2,"0") +
+        ":" +
+        String(secs).padStart(2,"0")
+    );
+
+}
+
+
+progressBar.addEventListener(
+    "click",
+    function(e){
+
+        if(
+            !video.duration ||
+            !isFinite(video.duration)
+        ){
+
+            return;
+
+        }
+
+        const rect =
+            progressBar.getBoundingClientRect();
+
+        const percent =
+            (e.clientX - rect.left) /
+            rect.width;
+
+        video.currentTime =
+            percent * video.duration;
+
+    }
+);
+
+
+/* VOLUME */
+
+volumeSlider.addEventListener(
+    "input",
+    function(){
+
+        video.volume =
+            this.value;
+
+        updateMuteIcon();
+
+    }
+);
+
+
+muteBtn.addEventListener(
+    "click",
+    function(){
+
+        video.muted =
+            !video.muted;
+
+        updateMuteIcon();
+
+    }
+);
+
+
+function updateMuteIcon(){
+
+    if(
+        video.muted ||
+        video.volume === 0
+    ){
+
+        muteBtn.innerHTML =
+            '<i class="fas fa-volume-mute"></i>';
+
+    }else if(
+        video.volume < .5
+    ){
+
+        muteBtn.innerHTML =
+            '<i class="fas fa-volume-down"></i>';
+
+    }else{
+
+        muteBtn.innerHTML =
+            '<i class="fas fa-volume-up"></i>';
+
+    }
+
+}
+
+
+/* INIT */
+
+video.volume = .8;
+
+volumeSlider.value = .8;
+
+renderVideoList();
+
+landing.style.display =
+    "block";
+
+player.style.display =
+    "none";
+
 })();
 
-/* === Klik tombol === */
-function handleChoice(url, ev){
-  if(ev){
-    ev.preventDefault();
-    ev.stopPropagation();
-    if (typeof ev.stopImmediatePropagation === 'function') ev.stopImmediatePropagation();
-  }
-  rememberSkip();
-  destroyModal();
-  openInNewTabOnly(url);
-}
-
-/* === Pasang listener (dengan pencegah bubbling) === */
-$btnGo.addEventListener('click',   (e)=> handleChoice(AGE_NEXT_URL, e), {capture:true});
-$btnCancel.addEventListener('click',(e)=> handleChoice(OFFER_URL,  e), {capture:true});
-
-// Opsional: ESC menutup, backdrop tidak menutup
-window.addEventListener('keydown', (e)=>{ if(e.key==='Escape') destroyModal(); });
-
-// Tampilkan otomatis setelah delay, kecuali masih dalam TTL
-window.addEventListener('load', ()=>{ if(!shouldSkip()) setTimeout(showModal, AUTO_SHOW_DELAY_MS); });
 </script>
-
-
-  <!-- ===== Histats (OK di akhir body) ===== -->
-  <!-- Histats.com  START  (aync)-->
-<script type="text/javascript">var _Hasync= _Hasync|| [];
-_Hasync.push(['Histats.start', '1,5015622,4,0,0,0,00010000']);
-_Hasync.push(['Histats.fasi', '1']);
-_Hasync.push(['Histats.track_hits', '']);
-(function() {
-var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
-hs.src = ('//s10.histats.com/js15_as.js');
-(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
-})();</script>
-<noscript><a href="/" target="_blank"><img src="//sstatic1.histats.com/0.gif?5015622&101" alt="" border="0"></a></noscript>
-<!-- Histats.com  END  -->
 
 </body>
 </html>
