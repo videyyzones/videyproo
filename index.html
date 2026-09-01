@@ -1,269 +1,3519 @@
-<!DOCTYPE html><html lang="id">  <head>  
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="kadam-verification" content="kadame3fc06b789c67c7a7057edd5573ea2ac" />
-<title>V Video Hub</title><style>  
-*{margin:0;padding:0;box-sizing:border-box}  body{
-background:#0b0b0b;
-font-family:Segoe UI,Arial,sans-serif;
-color:#fff;
-}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
 
-header{
-position:sticky;
-top:0;
-z-index:100;
-background:rgba(15,15,15,.95);
-backdrop-filter:blur(10px);
-border-bottom:1px solid #222;
-padding:15px;
-}
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  >
 
-.logo{
-font-size:34px;
-font-weight:900;
-text-align:center;
-letter-spacing:2px;
-}
+  <meta
+    name="description"
+    content="VIRALFLIX - Platform streaming video modern dengan koleksi video terbaru dan populer."
+  >
 
-.hero{
-padding:30px 20px;
-text-align:center;
-background:linear-gradient(180deg,#181818,#0b0b0b);
-}
+  <meta name="theme-color" content="#0b0b0e">
 
-.hero h1{
-font-size:32px;
-margin-bottom:10px;
-}
+  <title>VIRALFLIX — Streaming</title>
 
-.hero p{
-color:#aaa;
-max-width:600px;
-margin:auto;
-}
+  <!-- =========================================================
+       TAILWIND CSS
+  ========================================================== -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-.search-wrap{
-padding:15px;
-max-width:700px;
-margin:auto;
-}
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              400: "#ff5a5f",
+              500: "#e50914",
+              600: "#b20710"
+            }
+          }
+        }
+      }
+    };
+  </script>
 
-.search{
-width:100%;
-padding:14px;
-border:none;
-border-radius:12px;
-background:#1c1c1c;
-color:#fff;
-font-size:16px;
-outline:none;
-}
+  <!-- =========================================================
+       LUCIDE ICONS
+  ========================================================== -->
+  <script src="https://unpkg.com/lucide@latest"></script>
 
-.grid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:14px;
-padding:14px;
-max-width:1400px;
-margin:auto;
-}
+  <style>
+    /* =========================================================
+       BASE
+    ========================================================== */
 
-.card{
-background:#171717;
-border-radius:16px;
-overflow:hidden;
-cursor:pointer;
-transition:.25s;
-border:1px solid #222;
-}
+    * {
+      box-sizing: border-box;
+    }
 
-.card:hover{
-transform:translateY(-4px);
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-.thumb{
-aspect-ratio:9/16;
-background:linear-gradient(135deg,#111,#333);
-position:relative;
-display:flex;
-justify-content:center;
-align-items:center;
-}
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #0b0b0e;
+      color: #f5f5f5;
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      transition:
+        background-color .3s ease,
+        color .3s ease;
+    }
 
-.play{
-width:70px;
-height:70px;
-border-radius:50%;
-background:rgba(255,255,255,.15);
-display:flex;
-justify-content:center;
-align-items:center;
-backdrop-filter:blur(8px);
-}
+    body.light-mode {
+      background: #f8fafc;
+      color: #111827;
+    }
 
-.play:before{
-content:"";
-margin-left:4px;
-border-top:14px solid transparent;
-border-bottom:14px solid transparent;
-border-left:22px solid white;
-}
+    button,
+    input {
+      font: inherit;
+    }
 
-.badge{
-position:absolute;
-top:10px;
-right:10px;
-background:#e50914;
-padding:5px 8px;
-border-radius:6px;
-font-size:11px;
-font-weight:bold;
-}
+    button {
+      -webkit-tap-highlight-color: transparent;
+    }
 
-.vlogo{
-position:absolute;
-font-size:70px;
-font-weight:900;
-opacity:.15;
-}
+    /* =========================================================
+       SCROLLBAR
+    ========================================================== */
 
-.info{
-padding:12px;
-}
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
 
-.title{
-font-weight:bold;
-font-size:14px;
-margin-bottom:5px;
-}
+    ::-webkit-scrollbar-track {
+      background: #0b0b0e;
+    }
 
-.meta{
-font-size:12px;
-color:#999;
-}
+    ::-webkit-scrollbar-thumb {
+      background: #333;
+      border-radius: 999px;
+    }
 
-.modal{
-display:none;
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.9);
-z-index:999;
-justify-content:center;
-align-items:center;
-padding:20px;
-}
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
 
-.modal-content{
-width:100%;
-max-width:900px;
-}
+    /* =========================================================
+       APP SHELL
+    ========================================================== */
 
-.modal video{
-width:100%;
-border-radius:12px;
-background:#000;
-}
+    .app-shell {
+      min-height: 100vh;
+    }
 
-.close{
-position:absolute;
-top:20px;
-right:20px;
-font-size:30px;
-cursor:pointer;
-}
+    .sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 250px;
+      z-index: 70;
+      background: rgba(12, 12, 15, .97);
+      border-right: 1px solid rgba(255,255,255,.06);
+      transition:
+        transform .3s ease,
+        background-color .3s ease;
+    }
 
-footer{
-padding:30px;
-text-align:center;
-color:#666;
-}
+    body.light-mode .sidebar {
+      background: rgba(255,255,255,.97);
+      border-right-color: rgba(15,23,42,.08);
+    }
 
-@media(min-width:768px){
-.grid{
-grid-template-columns:repeat(4,1fr);
-}
-}
+    .main-shell {
+      margin-left: 250px;
+      min-height: 100vh;
+    }
 
-@media(min-width:1200px){
-.grid{
-grid-template-columns:repeat(5,1fr);
-}
-}
-</style></head>
+    /* =========================================================
+       SIDEBAR
+    ========================================================== */
 
-<body><header>  
-<div class="logo">V</div>  
-</header><section class="hero">  
-<h1>Video Hub</h1>  
-<p>Koleksi video pilihan dalam tampilan modern dan responsif.</p>  
-</section><div class="search-wrap">  
-<input class="search" id="search" placeholder="Cari video...">  
-</div><div class="grid" id="grid"></div><div class="modal" id="modal">  
-<span class="close" onclick="closeVideo()">✕</span>  
-<div class="modal-content">  
-<video id="player" controls autoplay></video>  
-</div>  
-</div><footer>  
-© 2026 V Video Hub  
-</footer><script>  
-const videos = [  
-"https://cdn.videy.co/m8uOvANC1.mp4",  
-"https://cdn.videy.co/6DUw3c751.mp4",  
-"https://cdn2.videy.co/wgcbibEN1.mp4",  
-"https://cdn.videy.co/AwB9LIc31.mp4",  
-"https://cdn.videy.co/TyfRr7yF1.mp4",  
-"https://cdn2.videy.co/W8RlSSpg1.mp4",  
-"https://cdn2.videy.co/Mz1Riufx1.mp4",  
-"https://cdn2.videy.co/ssd4keuh1.mp4",  
-"https://cdn.videy.co/YMAJEwJp1.mp4",  
-"https://cdn2.videy.co/sE0VwbcS1.mp4",  
-"https://cdn.videy.co/TWRLKbDF1.mp4",  
-"https://cdn2.videy.co/I7EQ9hYZ1.mp4"  
-];  const grid=document.getElementById("grid");
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        linear-gradient(
+          135deg,
+          #e50914,
+          #8b0000
+        );
+      box-shadow:
+        0 12px 30px rgba(229,9,20,.25);
+    }
 
-function render(list){
-grid.innerHTML="";
-list.forEach((url,index)=>{
-const card=document.createElement("div");
-card.className="card";
+    .nav-item {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 11px 13px;
+      border-radius: 11px;
+      color: #96969e;
+      transition:
+        color .2s ease,
+        background-color .2s ease,
+        transform .2s ease;
+      cursor: pointer;
+      border: 0;
+      background: transparent;
+      text-align: left;
+    }
 
-card.innerHTML=`
+    .nav-item:hover {
+      color: #fff;
+      background: rgba(255,255,255,.055);
+      transform: translateX(2px);
+    }
 
-<div class="thumb">  
-<div class="badge">HD</div>  
-<div class="vlogo">V</div>  
-<div class="play"></div>  
-</div>  
-<div class="info">  
-<div class="title">Video ${index+1}</div>  
-<div class="meta">Tap untuk menonton</div>  
-</div>  
-`;  card.onclick=()=>openVideo(url);
-grid.appendChild(card);
-});
-}
+    .nav-item.active {
+      color: #fff;
+      background:
+        linear-gradient(
+          90deg,
+          rgba(229,9,20,.2),
+          rgba(229,9,20,.04)
+        );
+    }
 
-function openVideo(url){
-document.getElementById("modal").style.display="flex";
-document.getElementById("player").src=url;
-}
+    .nav-item.active .nav-icon {
+      color: #ff3b42;
+    }
 
-function closeVideo(){
-document.getElementById("player").pause();
-document.getElementById("player").src="";
-document.getElementById("modal").style.display="none";
-}
+    body.light-mode .nav-item {
+      color: #64748b;
+    }
 
-document.getElementById("search").addEventListener("input",e=>{
-const q=e.target.value.toLowerCase();
-const filtered=videos.filter((v,i)=>
-("video "+(i+1)).toLowerCase().includes(q)
-);
-render(filtered);
-});
+    body.light-mode .nav-item:hover {
+      color: #111827;
+      background: rgba(15,23,42,.05);
+    }
 
-render(videos);
-</script></body>
+    body.light-mode .nav-item.active {
+      color: #111827;
+      background: rgba(229,9,20,.08);
+    }
 
-</html>
+    /* =========================================================
+       TOPBAR
+    ========================================================== */
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(11,11,14,.86);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+
+    body.light-mode .topbar {
+      background: rgba(248,250,252,.86);
+      border-bottom-color: rgba(15,23,42,.08);
+    }
+
+    .search-box {
+      background: rgba(255,255,255,.055);
+      border: 1px solid rgba(255,255,255,.07);
+      transition:
+        border-color .2s ease,
+        background-color .2s ease,
+        box-shadow .2s ease;
+    }
+
+    .search-box:focus-within {
+      border-color: rgba(229,9,20,.6);
+      box-shadow: 0 0 0 3px rgba(229,9,20,.08);
+    }
+
+    body.light-mode .search-box {
+      background: #fff;
+      border-color: rgba(15,23,42,.1);
+    }
+
+    /* =========================================================
+       HERO
+    ========================================================== */
+
+    .hero {
+      position: relative;
+      min-height: 510px;
+      overflow: hidden;
+      border-radius: 24px;
+      background:
+        radial-gradient(
+          circle at 75% 30%,
+          rgba(229,9,20,.28),
+          transparent 34%
+        ),
+        radial-gradient(
+          circle at 30% 70%,
+          rgba(127,29,29,.18),
+          transparent 38%
+        ),
+        linear-gradient(
+          110deg,
+          #111116 0%,
+          #0c0c10 48%,
+          #171017 100%
+        );
+      border: 1px solid rgba(255,255,255,.06);
+    }
+
+    body.light-mode .hero {
+      background:
+        radial-gradient(
+          circle at 75% 30%,
+          rgba(229,9,20,.12),
+          transparent 34%
+        ),
+        linear-gradient(
+          110deg,
+          #fff,
+          #f1f5f9
+        );
+      border-color: rgba(15,23,42,.08);
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      opacity: .16;
+      background-image:
+        linear-gradient(
+          rgba(255,255,255,.04) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(255,255,255,.04) 1px,
+          transparent 1px
+        );
+      background-size: 40px 40px;
+      mask-image: linear-gradient(
+        to right,
+        transparent,
+        black,
+        transparent
+      );
+    }
+
+    .hero-orb {
+      position: absolute;
+      width: 430px;
+      height: 430px;
+      right: 8%;
+      top: 4%;
+      border-radius: 50%;
+      background:
+        radial-gradient(
+          circle,
+          rgba(229,9,20,.2),
+          transparent 65%
+        );
+      filter: blur(8px);
+    }
+
+    /* =========================================================
+       BUTTONS
+    ========================================================== */
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 0;
+      background: #e50914;
+      color: white;
+      border-radius: 10px;
+      padding: 11px 17px;
+      font-weight: 700;
+      cursor: pointer;
+      transition:
+        transform .2s ease,
+        background-color .2s ease,
+        box-shadow .2s ease;
+    }
+
+    .btn-primary:hover {
+      background: #f6121d;
+      transform: translateY(-1px);
+      box-shadow: 0 12px 30px rgba(229,9,20,.22);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(255,255,255,.06);
+      color: white;
+      border-radius: 10px;
+      padding: 10px 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .2s ease;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,.1);
+      transform: translateY(-1px);
+    }
+
+    body.light-mode .btn-secondary {
+      color: #111827;
+      border-color: rgba(15,23,42,.1);
+      background: #fff;
+    }
+
+    body.light-mode .btn-secondary:hover {
+      background: #f1f5f9;
+    }
+
+    /* =========================================================
+       CARDS
+    ========================================================== */
+
+    .movie-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 15px;
+      background: #151519;
+      border: 1px solid rgba(255,255,255,.055);
+      cursor: pointer;
+      transition:
+        transform .25s ease,
+        border-color .25s ease,
+        box-shadow .25s ease;
+    }
+
+    .movie-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(229,9,20,.28);
+      box-shadow:
+        0 20px 45px rgba(0,0,0,.28);
+    }
+
+    body.light-mode .movie-card {
+      background: #fff;
+      border-color: rgba(15,23,42,.08);
+      box-shadow: 0 8px 25px rgba(15,23,42,.05);
+    }
+
+    .poster {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: #18181b;
+    }
+
+    .poster video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      pointer-events: none;
+    }
+
+    .poster-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(0,0,0,.05),
+          rgba(0,0,0,.72)
+        );
+      opacity: 0;
+      transition: opacity .25s ease;
+    }
+
+    .movie-card:hover .poster-overlay {
+      opacity: 1;
+    }
+
+    .poster-play {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: #e50914;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 35px rgba(229,9,20,.35);
+      transform: scale(.85);
+      transition: transform .25s ease;
+    }
+
+    .movie-card:hover .poster-play {
+      transform: scale(1);
+    }
+
+    .list-button {
+      position: absolute;
+      right: 9px;
+      top: 9px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(0,0,0,.6);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 4;
+      cursor: pointer;
+    }
+
+    .list-button.saved {
+      background: #e50914;
+      border-color: #e50914;
+    }
+
+    /* =========================================================
+       SECTION
+    ========================================================== */
+
+    .section-card {
+      background: rgba(255,255,255,.025);
+      border: 1px solid rgba(255,255,255,.05);
+      border-radius: 18px;
+    }
+
+    body.light-mode .section-card {
+      background: #fff;
+      border-color: rgba(15,23,42,.07);
+    }
+
+    /* =========================================================
+       AD CONTAINERS
+    ========================================================== */
+
+    .ad-horizontal-wrap {
+      width: 100%;
+      min-height: 90px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      margin: 24px 0;
+    }
+
+    .ad-horizontal {
+      width: 728px;
+      max-width: 100%;
+      min-height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .ad-square-wrap {
+      width: 100%;
+      min-height: 250px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      padding: 4px 0;
+    }
+
+    .ad-square {
+      width: 300px;
+      max-width: 100%;
+      min-height: 250px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    /* =========================================================
+       MODAL
+    ========================================================== */
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      background: rgba(0,0,0,.78);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .modal-backdrop.show {
+      display: flex;
+      animation: fadeIn .2s ease;
+    }
+
+    .video-modal {
+      width: min(1000px, 100%);
+      max-height: 94vh;
+      overflow: auto;
+      border-radius: 20px;
+      background: #111114;
+      border: 1px solid rgba(255,255,255,.09);
+      box-shadow: 0 35px 100px rgba(0,0,0,.5);
+      animation: modalIn .22s ease;
+    }
+
+    body.light-mode .video-modal {
+      background: #fff;
+      border-color: rgba(15,23,42,.08);
+    }
+
+    .video-frame {
+      position: relative;
+      background: #000;
+      aspect-ratio: 16 / 9;
+    }
+
+    .video-frame video {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+      background: #000;
+    }
+
+    .modal-close {
+      position: absolute;
+      right: 14px;
+      top: 14px;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      background: rgba(0,0,0,.68);
+      border: 1px solid rgba(255,255,255,.12);
+      cursor: pointer;
+      z-index: 5;
+    }
+
+    /* =========================================================
+       TOAST
+    ========================================================== */
+
+    #toastContainer {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: min(360px, calc(100vw - 40px));
+      pointer-events: none;
+    }
+
+    .toast {
+      pointer-events: auto;
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      padding: 13px 14px;
+      border-radius: 13px;
+      background: #18181c;
+      border: 1px solid rgba(255,255,255,.09);
+      color: #fff;
+      box-shadow: 0 18px 45px rgba(0,0,0,.3);
+      animation: toastIn .25s ease;
+    }
+
+    .toast.success {
+      border-left: 3px solid #22c55e;
+    }
+
+    .toast.warning {
+      border-left: 3px solid #f59e0b;
+    }
+
+    .toast.info {
+      border-left: 3px solid #3b82f6;
+    }
+
+    body.light-mode .toast {
+      background: #fff;
+      color: #111827;
+      border-color: rgba(15,23,42,.08);
+    }
+
+    /* =========================================================
+       MOBILE OVERLAY
+    ========================================================== */
+
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 60;
+      background: rgba(0,0,0,.65);
+    }
+
+    .sidebar-overlay.show {
+      display: block;
+    }
+
+    /* =========================================================
+       ANIMATIONS
+    ========================================================== */
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes modalIn {
+      from {
+        opacity: 0;
+        transform: translateY(15px) scale(.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes toastIn {
+      from {
+        opacity: 0;
+        transform: translateY(15px) translateX(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) translateX(0);
+      }
+    }
+
+    @keyframes pulseSoft {
+      0%,100% {
+        opacity: .55;
+      }
+      50% {
+        opacity: 1;
+      }
+    }
+
+    .pulse-soft {
+      animation: pulseSoft 2s infinite;
+    }
+
+    /* =========================================================
+       EMPTY STATE
+    ========================================================== */
+
+    .empty-state {
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border: 1px dashed rgba(255,255,255,.1);
+      border-radius: 18px;
+      padding: 30px;
+    }
+
+    body.light-mode .empty-state {
+      border-color: rgba(15,23,42,.12);
+    }
+
+    /* =========================================================
+       RESPONSIVE
+    ========================================================== */
+
+    @media (max-width: 1100px) {
+      .main-shell {
+        margin-left: 0;
+      }
+
+      .sidebar {
+        transform: translateX(-100%);
+      }
+
+      .sidebar.mobile-open {
+        transform: translateX(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        min-height: 460px;
+        border-radius: 18px;
+      }
+
+      .topbar-search {
+        max-width: 180px;
+      }
+
+      .desktop-only {
+        display: none !important;
+      }
+
+      .movie-card:hover {
+        transform: none;
+      }
+
+      .poster-overlay {
+        opacity: 1;
+      }
+
+      .poster-play {
+        transform: scale(.9);
+      }
+    }
+
+    @media (max-width: 560px) {
+      .topbar-search {
+        display: none;
+      }
+
+      .hero {
+        min-height: 500px;
+      }
+
+      #toastContainer {
+        right: 12px;
+        bottom: 12px;
+        width: calc(100vw - 24px);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================================================
+       MOBILE SIDEBAR OVERLAY
+  ========================================================== -->
+  <div
+    id="sidebarOverlay"
+    class="sidebar-overlay"
+    aria-hidden="true"
+  ></div>
+
+  <!-- =========================================================
+       SIDEBAR
+  ========================================================== -->
+  <aside
+    id="sidebar"
+    class="sidebar flex flex-col"
+    aria-label="Sidebar navigation"
+  >
+
+    <!-- BRAND -->
+    <div class="px-5 py-5 border-b border-white/5">
+      <div class="flex items-center gap-3">
+        <div class="brand-mark">
+          <i data-lucide="play" size="20"></i>
+        </div>
+
+        <div>
+          <div class="font-black tracking-tight text-lg">
+            VIRAL<span class="text-red-500">FLIX</span>
+          </div>
+
+          <div class="text-[10px] text-zinc-500 uppercase tracking-[.2em]">
+            Streaming Platform
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NAVIGATION -->
+    <nav class="flex-1 overflow-y-auto px-3 py-5">
+
+      <div class="px-3 mb-2 text-[10px] font-bold uppercase tracking-[.2em] text-zinc-600">
+        Main Menu
+      </div>
+
+      <div class="space-y-1">
+
+        <button
+          class="nav-item active"
+          data-page="home"
+          type="button"
+        >
+          <i class="nav-icon" data-lucide="house" size="18"></i>
+          <span>Home</span>
+        </button>
+
+        <button
+          class="nav-item"
+          data-page="watchlist"
+          type="button"
+        >
+          <i class="nav-icon" data-lucide="bookmark" size="18"></i>
+          <span>Watch List</span>
+        </button>
+
+        <button
+          class="nav-item"
+          data-page="coming"
+          type="button"
+        >
+          <i class="nav-icon" data-lucide="calendar-clock" size="18"></i>
+          <span>Coming Soon</span>
+        </button>
+
+        <button
+          class="nav-item"
+          data-page="discovery"
+          type="button"
+        >
+          <i class="nav-icon" data-lucide="compass" size="18"></i>
+          <span>Discovery</span>
+        </button>
+
+        <button
+          class="nav-item"
+          data-page="friends"
+          type="button"
+        >
+          <i class="nav-icon" data-lucide="users" size="18"></i>
+          <span>Friends</span>
+        </button>
+
+        <button
+          class="nav-item"
+          data-page="parties"
+          type="button"
+        >
+          <i class="nav-icon" data-lucide="party-popper" size="18"></i>
+          <span>Parties</span>
+        </button>
+
+        <button
+          class="nav-item"
+          data-page="media"
+          type="button"
+        >
+          <i class="nav-icon" data-lucide="play-square" size="18"></i>
+          <span>Media</span>
+        </button>
+
+      </div>
+
+      <div class="px-3 mt-8 mb-2 text-[10px] font-bold uppercase tracking-[.2em] text-zinc-600">
+        System
+      </div>
+
+      <button
+        class="nav-item"
+        data-page="settings"
+        type="button"
+      >
+        <i class="nav-icon" data-lucide="settings" size="18"></i>
+        <span>Setting</span>
+      </button>
+
+    </nav>
+
+    <!-- SIDEBAR FOOTER -->
+    <div class="p-4 border-t border-white/5">
+
+      <div class="rounded-xl bg-white/[.035] p-3">
+        <div class="flex items-center gap-2">
+          <div class="w-2 h-2 rounded-full bg-green-500 pulse-soft"></div>
+          <span class="text-xs text-zinc-400">
+            System Online
+          </span>
+        </div>
+
+        <div class="mt-2 text-[10px] text-zinc-600">
+          VIRALFLIX v1.0
+        </div>
+      </div>
+
+    </div>
+
+  </aside>
+
+  <!-- =========================================================
+       MAIN SHELL
+  ========================================================== -->
+  <div class="main-shell">
+
+    <!-- =======================================================
+         TOPBAR
+    ======================================================== -->
+    <header class="topbar">
+
+      <div class="h-[70px] px-4 sm:px-6 lg:px-8 flex items-center gap-3">
+
+        <!-- MOBILE MENU -->
+        <button
+          id="mobileMenuBtn"
+          type="button"
+          class="w-10 h-10 shrink-0 rounded-xl bg-white/[.045] border border-white/[.06] flex items-center justify-center"
+          aria-label="Open menu"
+        >
+          <i data-lucide="menu" size="19"></i>
+        </button>
+
+        <!-- SEARCH -->
+        <div class="search-box topbar-search relative flex items-center h-10 flex-1 max-w-[420px]">
+
+          <i
+            data-lucide="search"
+            size="17"
+            class="ml-3 text-zinc-500 shrink-0"
+          ></i>
+
+          <input
+            id="searchInput"
+            type="search"
+            autocomplete="off"
+            placeholder="Search movies, videos..."
+            class="w-full h-full bg-transparent border-0 outline-none px-3 text-sm text-current placeholder:text-zinc-600"
+          >
+
+        </div>
+
+        <div class="flex-1"></div>
+
+        <!-- NIGHT / LIGHT -->
+        <button
+          id="themeBtn"
+          type="button"
+          class="h-10 px-3 rounded-xl bg-white/[.045] border border-white/[.06] flex items-center gap-2 text-sm font-semibold"
+          aria-label="Toggle theme"
+        >
+          <i
+            id="themeIcon"
+            data-lucide="moon"
+            size="17"
+          ></i>
+
+          <span
+            id="themeText"
+            class="hidden sm:inline"
+          >
+            Night
+          </span>
+        </button>
+
+        <!-- NOTIFICATION -->
+        <button
+          id="notificationBtn"
+          type="button"
+          class="relative w-10 h-10 rounded-xl bg-white/[.045] border border-white/[.06] flex items-center justify-center"
+          aria-label="Notifications"
+        >
+          <i data-lucide="bell" size="18"></i>
+
+          <span
+            class="absolute top-2 right-2 w-2 h-2 rounded-full bg-red-500"
+          ></span>
+        </button>
+
+        <!-- PROFILE -->
+        <button
+          id="profileBtn"
+          type="button"
+          class="hidden sm:flex items-center gap-2 rounded-xl px-2 py-1.5 bg-white/[.035] border border-white/[.05]"
+        >
+          <div class="w-7 h-7 rounded-lg bg-gradient-to-br from-red-500 to-red-800 flex items-center justify-center text-xs font-black">
+            V
+          </div>
+
+          <span class="text-xs font-semibold">
+            Viewer
+          </span>
+        </button>
+
+      </div>
+
+    </header>
+
+    <!-- =======================================================
+         DYNAMIC MAIN CONTENT
+    ======================================================== -->
+    <main
+      id="mainContent"
+      class="p-4 sm:p-6 lg:p-8"
+    >
+      <!-- JavaScript renders page here -->
+    </main>
+
+  </div>
+
+  <!-- =========================================================
+       VIDEO MODAL
+  ========================================================== -->
+  <div
+    id="videoModal"
+    class="modal-backdrop"
+    role="dialog"
+    aria-modal="true"
+    aria-hidden="true"
+  >
+
+    <div class="video-modal">
+
+      <div class="video-frame">
+
+        <video
+          id="videoPlayer"
+          controls
+          playsinline
+          preload="metadata"
+        ></video>
+
+        <button
+          id="modalClose"
+          type="button"
+          class="modal-close"
+          aria-label="Close player"
+        >
+          <i data-lucide="x" size="21"></i>
+        </button>
+
+      </div>
+
+      <div class="p-5 sm:p-6">
+
+        <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+
+          <div class="flex-1">
+
+            <div
+              id="modalCategory"
+              class="text-xs text-red-500 font-bold uppercase tracking-wider"
+            >
+              Video
+            </div>
+
+            <h2
+              id="modalTitle"
+              class="text-xl sm:text-2xl font-black mt-1"
+            >
+              Video
+            </h2>
+
+            <p
+              id="modalDescription"
+              class="text-sm text-zinc-500 mt-2"
+            >
+              Streaming video.
+            </p>
+
+          </div>
+
+          <button
+            id="modalDirectBtn"
+            type="button"
+            class="btn-primary shrink-0"
+          >
+            <i data-lucide="external-link" size="17"></i>
+            Open Stream
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- =========================================================
+       TOAST CONTAINER
+  ========================================================== -->
+  <div id="toastContainer"></div>
+
+  <!-- =========================================================
+       JAVASCRIPT
+  ========================================================== -->
+  <script>
+    "use strict";
+
+    /* =========================================================
+       CONFIGURATION
+    ========================================================== */
+
+    const DIRECT_LINK =
+      "https://conductivebreeds.com/ivhgr2by9x?key=d5887de29582e2ed00a34f4151b7b74a";
+
+    const VIDEOS = [
+      {
+        id: 1,
+        title: "Viral Video #01",
+        category: "Trending",
+        year: "2026",
+        duration: "03:42",
+        rating: "9.1",
+        description: "Video viral terbaru yang sedang ramai ditonton.",
+        url: "https://cdn2.videy.co/07NDkyml1.mp4",
+        progress: 68,
+        badge: "NEW"
+      },
+      {
+        id: 2,
+        title: "Viral Video #02",
+        category: "Popular",
+        year: "2026",
+        duration: "04:18",
+        rating: "8.9",
+        description: "Koleksi video populer pilihan VIRALFLIX.",
+        url: "https://cdn2.videy.co/Y5LOOOWu1.mp4",
+        progress: 42,
+        badge: "HOT"
+      },
+      {
+        id: 3,
+        title: "Viral Video #03",
+        category: "Trending",
+        year: "2026",
+        duration: "02:56",
+        rating: "9.0",
+        description: "Salah satu video yang sedang trending.",
+        url: "https://cdn2.videy.co/e8iqLicw1.mp4",
+        progress: 81,
+        badge: "TRENDING"
+      },
+      {
+        id: 4,
+        title: "Viral Video #04",
+        category: "Featured",
+        year: "2026",
+        duration: "05:11",
+        rating: "9.3",
+        description: "Featured video dengan engagement tinggi.",
+        url: "https://cdn2.videy.co/B8X4JDBe1.mp4",
+        progress: 27,
+        badge: "TOP"
+      },
+      {
+        id: 5,
+        title: "Viral Video #05",
+        category: "Popular",
+        year: "2026",
+        duration: "03:25",
+        rating: "8.8",
+        description: "Video pilihan terbaru untuk kamu.",
+        url: "https://cdn2.videy.co/2QjJLeH41.mp4",
+        progress: 55,
+        badge: "NEW"
+      }
+    ];
+
+    const UPCOMING = [
+      {
+        id: 101,
+        title: "Upcoming Viral #01",
+        category: "Coming Soon",
+        date: "12 September 2026"
+      },
+      {
+        id: 102,
+        title: "Upcoming Viral #02",
+        category: "Coming Soon",
+        date: "18 September 2026"
+      },
+      {
+        id: 103,
+        title: "Upcoming Viral #03",
+        category: "Coming Soon",
+        date: "24 September 2026"
+      }
+    ];
+
+    /* =========================================================
+       STATE
+    ========================================================== */
+
+    let currentPage = "home";
+    let currentSearch = "";
+    let currentVideoId = null;
+
+    let savedList = [];
+
+    try {
+      savedList =
+        JSON.parse(
+          localStorage.getItem("viralflix_watchlist") || "[]"
+        );
+
+      if (!Array.isArray(savedList)) {
+        savedList = [];
+      }
+    } catch (error) {
+      savedList = [];
+    }
+
+    /* =========================================================
+       DOM REFERENCES
+    ========================================================== */
+
+    const mainContent =
+      document.getElementById("mainContent");
+
+    const sidebar =
+      document.getElementById("sidebar");
+
+    const sidebarOverlay =
+      document.getElementById("sidebarOverlay");
+
+    const mobileMenuBtn =
+      document.getElementById("mobileMenuBtn");
+
+    const searchInput =
+      document.getElementById("searchInput");
+
+    const themeBtn =
+      document.getElementById("themeBtn");
+
+    const themeText =
+      document.getElementById("themeText");
+
+    const notificationBtn =
+      document.getElementById("notificationBtn");
+
+    const profileBtn =
+      document.getElementById("profileBtn");
+
+    const videoModal =
+      document.getElementById("videoModal");
+
+    const videoPlayer =
+      document.getElementById("videoPlayer");
+
+    const modalClose =
+      document.getElementById("modalClose");
+
+    const modalDirectBtn =
+      document.getElementById("modalDirectBtn");
+
+    const modalTitle =
+      document.getElementById("modalTitle");
+
+    const modalCategory =
+      document.getElementById("modalCategory");
+
+    const modalDescription =
+      document.getElementById("modalDescription");
+
+    const toastContainer =
+      document.getElementById("toastContainer");
+
+    /* =========================================================
+       SAFE ICON REFRESH
+    ========================================================== */
+
+    function refreshIcons() {
+      if (
+        window.lucide &&
+        typeof window.lucide.createIcons === "function"
+      ) {
+        window.lucide.createIcons();
+      }
+    }
+
+    /* =========================================================
+       TOAST
+    ========================================================== */
+
+    function showToast(
+      message,
+      type = "info"
+    ) {
+      const toast =
+        document.createElement("div");
+
+      toast.className =
+        "toast " + type;
+
+      let iconName = "info";
+
+      if (type === "success") {
+        iconName = "check-circle-2";
+      }
+
+      if (type === "warning") {
+        iconName = "triangle-alert";
+      }
+
+      toast.innerHTML = `
+        <i data-lucide="${iconName}" size="18"></i>
+        <div class="text-sm leading-5">${escapeHtml(message)}</div>
+      `;
+
+      toastContainer.appendChild(toast);
+
+      refreshIcons();
+
+      setTimeout(() => {
+        toast.style.opacity = "0";
+        toast.style.transform =
+          "translateY(8px)";
+        toast.style.transition =
+          "opacity .2s ease, transform .2s ease";
+
+        setTimeout(() => {
+          toast.remove();
+        }, 220);
+      }, 2800);
+    }
+
+    /* =========================================================
+       ESCAPE HTML
+    ========================================================== */
+
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    /* =========================================================
+       SAVE WATCH LIST
+    ========================================================== */
+
+    function saveWatchList() {
+      try {
+        localStorage.setItem(
+          "viralflix_watchlist",
+          JSON.stringify(savedList)
+        );
+      } catch (error) {
+        showToast(
+          "Watch List tidak dapat disimpan di browser.",
+          "warning"
+        );
+      }
+    }
+
+    function isSaved(id) {
+      return savedList.includes(Number(id));
+    }
+
+    function toggleWatchList(
+      id,
+      event = null
+    ) {
+      if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+
+      id = Number(id);
+
+      if (isSaved(id)) {
+        savedList =
+          savedList.filter(
+            item => item !== id
+          );
+
+        showToast(
+          "Video dihapus dari Watch List.",
+          "info"
+        );
+      } else {
+        savedList.push(id);
+
+        showToast(
+          "Video ditambahkan ke Watch List.",
+          "success"
+        );
+      }
+
+      saveWatchList();
+
+      renderCurrentPage();
+    }
+
+    /* =========================================================
+       DIRECT LINK
+       ========================================================== */
+
+    function openDirectLink() {
+      /*
+        PENTING:
+        window.open dijalankan langsung dari event click.
+        Tidak memakai timeout, async, redirect, atau auto-click.
+      */
+
+      const opened =
+        window.open(
+          DIRECT_LINK,
+          "_blank",
+          "noopener,noreferrer"
+        );
+
+      if (!opened) {
+        showToast(
+          "Tab iklan diblokir browser. Izinkan pop-up untuk membuka DirectLink.",
+          "warning"
+        );
+      }
+
+      return opened;
+    }
+
+    /* =========================================================
+       VIDEO PLAYER
+    ========================================================== */
+
+    function handleVideoClick(
+      id,
+      event = null
+    ) {
+      if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+
+      /*
+        1. Buka DirectLink.
+        2. Langsung buka player.
+      */
+
+      openDirectLink();
+
+      openVideoModal(id);
+    }
+
+    function openVideoModal(id) {
+      const video =
+        VIDEOS.find(
+          item => item.id === Number(id)
+        );
+
+      if (!video) {
+        showToast(
+          "Video tidak ditemukan.",
+          "warning"
+        );
+
+        return;
+      }
+
+      currentVideoId = video.id;
+
+      modalTitle.textContent =
+        video.title;
+
+      modalCategory.textContent =
+        video.category;
+
+      modalDescription.textContent =
+        video.description;
+
+      videoPlayer.pause();
+
+      videoPlayer.src = video.url;
+
+      videoPlayer.load();
+
+      videoModal.classList.add("show");
+
+      videoModal.setAttribute(
+        "aria-hidden",
+        "false"
+      );
+
+      document.body.style.overflow =
+        "hidden";
+
+      /*
+        Autoplay dicoba setelah modal dibuka.
+        Jika browser memblokir autoplay,
+        kontrol video tetap tersedia.
+      */
+
+      const playAttempt =
+        videoPlayer.play();
+
+      if (
+        playAttempt &&
+        typeof playAttempt.catch === "function"
+      ) {
+        playAttempt.catch(() => {
+          showToast(
+            "Player siap. Tekan Play untuk memulai video.",
+            "info"
+          );
+        });
+      }
+    }
+
+    function closeVideoModal() {
+      videoPlayer.pause();
+
+      videoPlayer.removeAttribute("src");
+
+      videoPlayer.load();
+
+      videoModal.classList.remove("show");
+
+      videoModal.setAttribute(
+        "aria-hidden",
+        "true"
+      );
+
+      document.body.style.overflow = "";
+
+      currentVideoId = null;
+    }
+
+    /* =========================================================
+       CARD GENERATOR
+    ========================================================== */
+
+    function movieCard(video) {
+      const saved =
+        isSaved(video.id);
+
+      return `
+        <article
+          class="movie-card"
+          data-video-id="${video.id}"
+          data-title="${escapeHtml(video.title.toLowerCase())}"
+          data-category="${escapeHtml(video.category.toLowerCase())}"
+          onclick="handleVideoClick(${video.id}, event)"
+        >
+
+          <div class="poster">
+
+            <video
+              src="${escapeHtml(video.url)}"
+              muted
+              playsinline
+              preload="metadata"
+            ></video>
+
+            <div class="absolute left-3 top-3 z-10">
+              <span class="px-2 py-1 rounded-md bg-red-600 text-white text-[9px] font-black tracking-wider">
+                ${escapeHtml(video.badge)}
+              </span>
+            </div>
+
+            <button
+              type="button"
+              class="list-button ${saved ? "saved" : ""}"
+              onclick="toggleWatchList(${video.id}, event)"
+              aria-label="Add to Watch List"
+            >
+              <i
+                data-lucide="${saved ? "check" : "plus"}"
+                size="17"
+              ></i>
+            </button>
+
+            <div class="poster-overlay">
+              <div class="poster-play">
+                <i data-lucide="play" size="22"></i>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="p-3.5">
+
+            <div class="flex items-start justify-between gap-2">
+
+              <h3 class="font-bold text-sm leading-5 truncate">
+                ${escapeHtml(video.title)}
+              </h3>
+
+              <div class="flex items-center gap-1 shrink-0 text-amber-400">
+                <i data-lucide="star" size="12" fill="currentColor"></i>
+                <span class="text-[11px] font-bold">
+                  ${escapeHtml(video.rating)}
+                </span>
+              </div>
+
+            </div>
+
+            <div class="mt-2 flex items-center gap-2 text-[11px] text-zinc-500">
+              <span>${escapeHtml(video.year)}</span>
+              <span>•</span>
+              <span>${escapeHtml(video.duration)}</span>
+              <span>•</span>
+              <span>${escapeHtml(video.category)}</span>
+            </div>
+
+            <button
+              type="button"
+              class="btn-primary w-full mt-3 py-2.5 text-xs"
+              onclick="handleVideoClick(${video.id}, event)"
+            >
+              <i data-lucide="play" size="14"></i>
+              Watch Now
+            </button>
+
+          </div>
+
+        </article>
+      `;
+    }
+
+    /* =========================================================
+       FILTER
+    ========================================================== */
+
+    function filterVideos(
+      videos = VIDEOS
+    ) {
+      const query =
+        currentSearch
+          .trim()
+          .toLowerCase();
+
+      if (!query) {
+        return videos;
+      }
+
+      return videos.filter(video => {
+        return (
+          video.title
+            .toLowerCase()
+            .includes(query) ||
+          video.category
+            .toLowerCase()
+            .includes(query) ||
+          video.description
+            .toLowerCase()
+            .includes(query)
+        );
+      });
+    }
+
+    /* =========================================================
+       VIDEO GRID
+    ========================================================== */
+
+    function renderVideoGrid(
+      videos,
+      emptyMessage = "Tidak ada video ditemukan."
+    ) {
+      if (!videos.length) {
+        return `
+          <div class="empty-state col-span-full">
+            <div class="w-14 h-14 rounded-2xl bg-white/[.04] flex items-center justify-center mb-4">
+              <i data-lucide="search-x" size="25"></i>
+            </div>
+
+            <h3 class="font-bold text-lg">
+              Tidak ada hasil
+            </h3>
+
+            <p class="text-sm text-zinc-500 mt-1">
+              ${escapeHtml(emptyMessage)}
+            </p>
+          </div>
+        `;
+      }
+
+      return videos
+        .map(movieCard)
+        .join("");
+    }
+
+    /* =========================================================
+       HOME PAGE
+    ========================================================== */
+
+    function renderHome() {
+      const filtered =
+        filterVideos();
+
+      const popular =
+        filterVideos(
+          VIDEOS.filter(
+            video =>
+              video.category === "Popular" ||
+              video.category === "Featured"
+          )
+        );
+
+      const favorites =
+        filterVideos(
+          VIDEOS.filter(video =>
+            isSaved(video.id)
+          )
+        );
+
+      mainContent.innerHTML = `
+        <div class="max-w-[1500px] mx-auto space-y-7">
+
+          <!-- HERO -->
+          <section class="hero">
+
+            <div class="hero-grid"></div>
+            <div class="hero-orb"></div>
+
+            <div class="relative z-10 h-full min-h-[510px] p-6 sm:p-10 lg:p-14 flex items-end">
+
+              <div class="max-w-2xl">
+
+                <div class="flex items-center gap-2 mb-4">
+                  <span class="px-2.5 py-1 rounded-md bg-red-600 text-[10px] font-black tracking-widest">
+                    #1 TRENDING
+                  </span>
+
+                  <span class="text-xs text-zinc-400">
+                    VIRALFLIX ORIGINAL
+                  </span>
+                </div>
+
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[.95]">
+                  Video Viral
+                  <span class="text-red-500">Terkini</span>
+                </h1>
+
+                <p class="mt-5 max-w-xl text-sm sm:text-base text-zinc-400 leading-7">
+                  Nikmati koleksi video terbaru, populer, dan sedang trending
+                  dalam satu platform streaming modern.
+                </p>
+
+                <div class="flex flex-wrap items-center gap-3 mt-7">
+
+                  <button
+                    type="button"
+                    class="btn-primary"
+                    onclick="handleVideoClick(1, event)"
+                  >
+                    <i data-lucide="play" size="18"></i>
+                    Watch Now
+                  </button>
+
+                  <button
+                    type="button"
+                    class="btn-secondary"
+                    onclick="toggleWatchList(1, event)"
+                  >
+                    <i data-lucide="plus" size="18"></i>
+                    My List
+                  </button>
+
+                </div>
+
+                <div class="mt-7 flex flex-wrap items-center gap-4 text-xs text-zinc-500">
+
+                  <span class="flex items-center gap-1.5">
+                    <i data-lucide="badge-check" size="14" class="text-green-500"></i>
+                    HD Streaming
+                  </span>
+
+                  <span class="flex items-center gap-1.5">
+                    <i data-lucide="shield-check" size="14" class="text-green-500"></i>
+                    Fast Access
+                  </span>
+
+                  <span class="flex items-center gap-1.5">
+                    <i data-lucide="smartphone" size="14"></i>
+                    Mobile Friendly
+                  </span>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </section>
+
+          <!-- NEW RELEASE -->
+          <section>
+
+            <div class="flex items-end justify-between gap-4 mb-4">
+
+              <div>
+                <div class="text-[10px] uppercase tracking-[.2em] text-red-500 font-black">
+                  Latest
+                </div>
+
+                <h2 class="text-xl sm:text-2xl font-black mt-1">
+                  New Release
+                </h2>
+
+                <p class="text-xs text-zinc-500 mt-1">
+                  Video terbaru yang baru ditambahkan.
+                </p>
+              </div>
+
+              <button
+                type="button"
+                class="text-xs font-bold text-red-500 hover:text-red-400"
+                onclick="viewMore('New Release')"
+              >
+                View More
+              </button>
+
+            </div>
+
+            <div
+              id="newReleaseGrid"
+              class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4"
+            >
+              ${renderVideoGrid(filtered)}
+            </div>
+
+          </section>
+
+          <!-- =================================================
+               728x90 ADS
+               PERSIS DI BAWAH NEW RELEASE
+          ================================================== -->
+          <div class="ad-horizontal-wrap">
+
+            <div class="ad-horizontal">
+
+              <div id="eqbhl8">
+
+                <script>
+                  atOptions = {
+                    'key' : '01fe5a1681d1f45f0375a42afa1b8c9f',
+                    'format' : 'iframe',
+                    'height' : 90,
+                    'width' : 728,
+                    'params' : {}
+                  };
+                </script>
+
+                <script src="https://conductivebreeds.com/01fe5a1681d1f45f0375a42afa1b8c9f/invoke.js"></script>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- CONTENT LAYOUT -->
+          <div class="grid grid-cols-1 xl:grid-cols-[minmax(0,1fr)_320px] gap-7">
+
+            <!-- LEFT -->
+            <div class="min-w-0 space-y-8">
+
+              <!-- POPULAR -->
+              <section>
+
+                <div class="flex items-end justify-between gap-4 mb-4">
+
+                  <div>
+                    <div class="text-[10px] uppercase tracking-[.2em] text-red-500 font-black">
+                      Most Watched
+                    </div>
+
+                    <h2 class="text-xl sm:text-2xl font-black mt-1">
+                      Popular Movies
+                    </h2>
+                  </div>
+
+                  <button
+                    type="button"
+                    class="text-xs font-bold text-red-500"
+                    onclick="viewMore('Popular Movies')"
+                  >
+                    View More
+                  </button>
+
+                </div>
+
+                <div
+                  class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-2 gap-4"
+                >
+                  ${renderVideoGrid(popular)}
+                </div>
+
+              </section>
+
+              <!-- =================================================
+                   300x250 ADS
+                   PERSIS DI ANTARA POPULAR MOVIES & FAVORITES
+              ================================================== -->
+
+              <div class="section-card p-3">
+
+                <div class="text-[9px] uppercase tracking-[.2em] text-zinc-600 font-bold text-center mb-2">
+                  Advertisement
+                </div>
+
+                <div class="ad-square-wrap">
+
+                  <div class="ad-square">
+
+                    <div id="m4h334">
+
+                      <script>
+                        atOptions = {
+                          'key' : '9d3319224168631f06c37c7f2f561efd',
+                          'format' : 'iframe',
+                          'height' : 250,
+                          'width' : 300,
+                          'params' : {}
+                        };
+                      </script>
+
+                      <script src="https://conductivebreeds.com/9d3319224168631f06c37c7f2f561efd/invoke.js"></script>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+              <!-- FAVORITES -->
+              <section>
+
+                <div class="flex items-end justify-between gap-4 mb-4">
+
+                  <div>
+                    <div class="text-[10px] uppercase tracking-[.2em] text-red-500 font-black">
+                      Your Collection
+                    </div>
+
+                    <h2 class="text-xl sm:text-2xl font-black mt-1">
+                      Favorites
+                    </h2>
+                  </div>
+
+                </div>
+
+                <div
+                  class="grid grid-cols-1 sm:grid-cols-2 gap-4"
+                >
+                  ${
+                    favorites.length
+                      ? favorites.map(movieCard).join("")
+                      : `
+                        <div class="empty-state col-span-full">
+                          <div class="w-14 h-14 rounded-2xl bg-white/[.04] flex items-center justify-center mb-4">
+                            <i data-lucide="heart" size="24"></i>
+                          </div>
+
+                          <h3 class="font-bold">
+                            Belum ada Favorites
+                          </h3>
+
+                          <p class="text-sm text-zinc-500 mt-1">
+                            Tekan tombol + pada video untuk menambahkannya.
+                          </p>
+                        </div>
+                      `
+                  }
+                </div>
+
+              </section>
+
+            </div>
+
+            <!-- RIGHT SIDEBAR -->
+            <aside class="space-y-6">
+
+              <!-- CONTINUE WATCHING -->
+              <section class="section-card p-4">
+
+                <div class="flex items-center justify-between mb-4">
+
+                  <div>
+                    <div class="text-[10px] uppercase tracking-[.18em] text-red-500 font-black">
+                      Resume
+                    </div>
+
+                    <h2 class="font-black mt-1">
+                      Continue Watching
+                    </h2>
+                  </div>
+
+                  <i data-lucide="history" size="18" class="text-zinc-500"></i>
+
+                </div>
+
+                <div class="space-y-3">
+
+                  ${VIDEOS.slice(0,3).map(video => `
+                    <button
+                      type="button"
+                      class="w-full text-left group"
+                      onclick="handleVideoClick(${video.id}, event)"
+                    >
+
+                      <div class="flex gap-3">
+
+                        <div class="relative w-28 aspect-video rounded-lg overflow-hidden bg-zinc-900 shrink-0">
+
+                          <video
+                            src="${escapeHtml(video.url)}"
+                            muted
+                            playsinline
+                            preload="metadata"
+                            class="w-full h-full object-cover pointer-events-none"
+                          ></video>
+
+                          <div class="absolute inset-0 bg-black/25 flex items-center justify-center">
+                            <div class="w-7 h-7 rounded-full bg-red-600 flex items-center justify-center">
+                              <i data-lucide="play" size="12"></i>
+                            </div>
+                          </div>
+
+                        </div>
+
+                        <div class="min-w-0 flex-1">
+
+                          <div class="text-xs font-bold truncate">
+                            ${escapeHtml(video.title)}
+                          </div>
+
+                          <div class="text-[10px] text-zinc-500 mt-1">
+                            ${escapeHtml(video.duration)} remaining
+                          </div>
+
+                          <div class="mt-2 h-1 rounded-full bg-zinc-800 overflow-hidden">
+
+                            <div
+                              class="h-full bg-red-600 rounded-full"
+                              style="width:${Math.max(5, Math.min(100, video.progress))}%"
+                            ></div>
+
+                          </div>
+
+                        </div>
+
+                      </div>
+
+                    </button>
+                  `).join("")}
+
+                </div>
+
+              </section>
+
+              <!-- QUICK INFO -->
+              <section class="section-card p-4">
+
+                <div class="flex items-center gap-3">
+
+                  <div class="w-10 h-10 rounded-xl bg-red-500/10 text-red-500 flex items-center justify-center">
+                    <i data-lucide="zap" size="19"></i>
+                  </div>
+
+                  <div>
+                    <div class="text-sm font-bold">
+                      Trending Now
+                    </div>
+
+                    <div class="text-xs text-zinc-500">
+                      Update real-time
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="grid grid-cols-2 gap-2 mt-4">
+
+                  <div class="rounded-xl bg-white/[.035] p-3">
+                    <div class="text-lg font-black">
+                      5
+                    </div>
+                    <div class="text-[10px] text-zinc-500">
+                      Videos
+                    </div>
+                  </div>
+
+                  <div class="rounded-xl bg-white/[.035] p-3">
+                    <div class="text-lg font-black">
+                      HD
+                    </div>
+                    <div class="text-[10px] text-zinc-500">
+                      Quality
+                    </div>
+                  </div>
+
+                </div>
+
+              </section>
+
+            </aside>
+
+          </div>
+
+        </div>
+      `;
+
+      refreshIcons();
+    }
+
+    /* =========================================================
+       WATCH LIST PAGE
+    ========================================================== */
+
+    function renderWatchList() {
+      const videos =
+        filterVideos(
+          VIDEOS.filter(video =>
+            isSaved(video.id)
+          )
+        );
+
+      mainContent.innerHTML = `
+        <div class="max-w-[1500px] mx-auto">
+
+          <div class="mb-7">
+
+            <div class="text-[10px] uppercase tracking-[.2em] text-red-500 font-black">
+              My Collection
+            </div>
+
+            <h1 class="text-3xl sm:text-4xl font-black mt-1">
+              Watch List
+            </h1>
+
+            <p class="text-sm text-zinc-500 mt-2">
+              Semua video yang kamu simpan ada di sini.
+            </p>
+
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+
+            ${
+              videos.length
+                ? videos.map(movieCard).join("")
+                : `
+                  <div class="empty-state col-span-full">
+                    <div class="w-16 h-16 rounded-2xl bg-red-500/10 text-red-500 flex items-center justify-center mb-5">
+                      <i data-lucide="bookmark" size="28"></i>
+                    </div>
+
+                    <h2 class="text-xl font-black">
+                      Watch List masih kosong
+                    </h2>
+
+                    <p class="text-sm text-zinc-500 mt-2 max-w-md">
+                      Tambahkan video dengan menekan tombol + pada poster.
+                    </p>
+
+                    <button
+                      type="button"
+                      class="btn-primary mt-5"
+                      onclick="navigateTo('home')"
+                    >
+                      <i data-lucide="house" size="16"></i>
+                      Browse Home
+                    </button>
+                  </div>
+                `
+            }
+
+          </div>
+
+        </div>
+      `;
+
+      refreshIcons();
+    }
+
+    /* =========================================================
+       COMING SOON
+    ========================================================== */
+
+    function renderComingSoon() {
+      mainContent.innerHTML = `
+        <div class="max-w-[1500px] mx-auto">
+
+          <div class="mb-7">
+
+            <div class="text-[10px] uppercase tracking-[.2em] text-red-500 font-black">
+              Release Calendar
+            </div>
+
+            <h1 class="text-3xl sm:text-4xl font-black mt-1">
+              Coming Soon
+            </h1>
+
+            <p class="text-sm text-zinc-500 mt-2">
+              Konten yang akan segera hadir di VIRALFLIX.
+            </p>
+
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+
+            ${UPCOMING.map((item,index) => `
+              <article class="section-card overflow-hidden">
+
+                <div class="aspect-video bg-gradient-to-br from-zinc-900 via-red-950/30 to-black flex items-center justify-center">
+
+                  <div class="text-center">
+
+                    <div class="w-14 h-14 rounded-2xl bg-red-600/15 text-red-500 flex items-center justify-center mx-auto mb-3">
+                      <i data-lucide="calendar-clock" size="26"></i>
+                    </div>
+
+                    <div class="text-xs text-zinc-500">
+                      RELEASE
+                    </div>
+
+                  </div>
+
+                </div>
+
+                <div class="p-5">
+
+                  <div class="text-[10px] uppercase tracking-wider text-red-500 font-black">
+                    ${escapeHtml(item.category)}
+                  </div>
+
+                  <h2 class="font-black text-lg mt-1">
+                    ${escapeHtml(item.title)}
+                  </h2>
+
+                  <div class="flex items-center gap-2 text-xs text-zinc-500 mt-2">
+                    <i data-lucide="calendar" size="14"></i>
+                    ${escapeHtml(item.date)}
+                  </div>
+
+                  <button
+                    type="button"
+                    class="btn-secondary w-full mt-5 text-xs"
+                    onclick="notifyRelease('${escapeHtml(item.title)}')"
+                  >
+                    <i data-lucide="bell-plus" size="15"></i>
+                    Notify Me
+                  </button>
+
+                </div>
+
+              </article>
+            `).join("")}
+
+          </div>
+
+        </div>
+      `;
+
+      refreshIcons();
+    }
+
+    /* =========================================================
+       DISCOVERY
+    ========================================================== */
+
+    function renderDiscovery() {
+      const videos =
+        filterVideos();
+
+      mainContent.innerHTML = `
+        <div class="max-w-[1500px] mx-auto">
+
+          <div class="mb-6">
+
+            <div class="text-[10px] uppercase tracking-[.2em] text-red-500 font-black">
+              Explore
+            </div>
+
+            <h1 class="text-3xl sm:text-4xl font-black mt-1">
+              Discovery
+            </h1>
+
+            <p class="text-sm text-zinc-500 mt-2">
+              Temukan video berdasarkan kategori.
+            </p>
+
+          </div>
+
+          <div class="flex flex-wrap gap-2 mb-7">
+
+            <button
+              type="button"
+              class="category-filter btn-primary text-xs"
+              data-category-filter="all"
+            >
+              All
+            </button>
+
+            <button
+              type="button"
+              class="category-filter btn-secondary text-xs"
+              data-category-filter="trending"
+            >
+              Trending
+            </button>
+
+            <button
+              type="button"
+              class="category-filter btn-secondary text-xs"
+              data-category-filter="popular"
+            >
+              Popular
+            </button>
+
+            <button
+              type="button"
+              class="category-filter btn-secondary text-xs"
+              data-category-filter="featured"
+            >
+              Featured
+            </button>
+
+          </div>
+
+          <div
+            id="discoveryGrid"
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
+          >
+            ${renderVideoGrid(videos)}
+          </div>
+
+        </div>
+      `;
+
+      refreshIcons();
+
+      document
+        .querySelectorAll(
+          ".category-filter"
+        )
+        .forEach(button => {
+
+          button.addEventListener(
+            "click",
+            () => {
+
+              const category =
+                button.dataset.categoryFilter;
+
+              document
+                .querySelectorAll(
+                  ".category-filter"
+                )
+                .forEach(item => {
+                  item.classList.remove(
+                    "btn-primary"
+                  );
+                  item.classList.add(
+                    "btn-secondary"
+                  );
+                });
+
+              button.classList.remove(
+                "btn-secondary"
+              );
+
+              button.classList.add(
+                "btn-primary"
+              );
+
+              let result =
+                filterVideos();
+
+              if (category !== "all") {
+                result =
+                  result.filter(
+                    video =>
+                      video.category
+                        .toLowerCase() === category
+                  );
+              }
+
+              const grid =
+                document.getElementById(
+                  "discoveryGrid"
+                );
+
+              grid.innerHTML =
+                renderVideoGrid(
+                  result
+                );
+
+              refreshIcons();
+            }
+          );
+
+        });
+    }
+
+    /* =========================================================
+       FRIENDS
+    ========================================================== */
+
+    function renderFriends() {
+      const friends = [
+        {
+          name: "Alex",
+          status: "Watching Viral Video #02",
+          online: true
+        },
+        {
+          name: "Rina",
+          status: "Added Viral Video #04",
+          online: true
+        },
+        {
+          name: "Dimas",
+          status: "Offline",
+          online: false
+        },
+        {
+          name: "Nadia",
+          status: "Watching Viral Video #01",
+          online: true
+        }
+      ];
+
+      mainContent.innerHTML = `
+        <div class="max-w-[1100px] mx-auto">
+
+          <div class="mb-7">
+
+            <div class="text-[10px] uppercase tracking-[.2em] text-red-500 font-black">
+              Social
+            </div>
+
+            <h1 class="text-3xl sm:text-4xl font-black mt-1">
+              Friends
+            </h1>
+
+            <p class="text-sm text-zinc-500 mt-2">
+              Lihat aktivitas teman dan bagikan pengalaman menonton.
+            </p>
+
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+            ${friends.map(friend => `
+              <article class="section-card p-5">
+
+                <div class="flex items-center gap-4">
+
+                  <div class="relative">
+
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-zinc-700 to-zinc-900 flex items-center justify-center font-black">
+                      ${escapeHtml(friend.name.charAt(0))}
+                    </div>
+
+                    ${
+                      friend.online
+                        ? `
+                          <span class="absolute -right-1 -bottom-1 w-3.5 h-3.5 rounded-full bg-green-500 border-2 border-[#111114]"></span>
+                        `
+                        : ""
+                    }
+
+                  </div>
+
+                  <div class="flex-1 min-w-0">
+
+                    <h3 class="font-bold">
+                      ${escapeHtml(friend.name)}
+                    </h3>
+
+                    <p class="text-xs text-zinc-500 truncate mt-1">
+                      ${escapeHtml(friend.status)}
+                    </p>
+
+                  </div>
+
+                  <button
+                    type="button"
+                    class="btn-secondary text-xs px-3"
+                    onclick="showToast('Aktivitas ${escapeHtml(friend.name)} dibuka.', 'info')"
+                  >
+                    View
+                  </button>
+
+                </div>
+
+              </article>
+            `).join("")}
+
+          </div>
+
+          <section class="section-card mt-6 p-6 text-center">
+
+            <div class="w-14 h-14 rounded-2xl bg-red-500/10 text-red-500 flex items-center justify-center mx-auto">
+              <i data-lucide="user-plus" size="25"></i>
+            </div>
+
+            <h2 class="font-black text-xl mt-4">
+              Invite Friends
+            </h2>
+
+            <p class="text-sm text-zinc-500 mt-2">
+              Bagikan VIRALFLIX kepada teman kamu.
+            </p>
+
+            <button
+              type="button"
+              class="btn-primary mt-5"
+              onclick="shareSite()"
+            >
+              <i data-lucide="share-2" size="16"></i>
+              Share VIRALFLIX
+            </button>
+
+          </section>
+
+        </div>
+      `;
+
+      refreshIcons();
+    }
+
+    /* =========================================================
+       PARTIES
+    ========================================================== */
+
+    function renderParties() {
+      const parties = [
+        {
+          name: "Friday Viral Night",
+          members: 12,
+          status: "Live Now"
+        },
+        {
+          name: "Weekend Watch Party",
+          members: 8,
+          status: "Starts Soon"
+        },
+        {
+          name: "Trending Together",
+          members: 21,
+          status: "Live Now"
+        }
+      ];
+
+      mainContent.innerHTML = `
+        <div class="max-w-[1100px] mx-auto">
+
+          <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-7">
+
+            <div>
+
+              <div class="text-[10px] uppercase tracking-[.2em] text-red-500 font-black">
+                Watch Together
+              </div>
+
+              <h1 class="text-3xl sm:text-4xl font-black mt-1">
+                Parties
+              </h1>
+
+              <p class="text-sm text-zinc-500 mt-2">
+                Nonton bersama dalam satu watch party.
+              </p>
+
+            </div>
+
+            <button
+              type="button"
+              class="btn-primary"
+              onclick="createParty()"
+            >
+              <i data-lucide="plus" size="16"></i>
+              Create Party
+            </button>
+
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+            ${parties.map(party => `
+              <article class="section-card p-5">
+
+                <div class="flex items-center justify-between">
+
+                  <span class="px-2.5 py-1 rounded-md bg-red-500/10 text-red-500 text-[9px] font-black">
+                    ${escapeHtml(party.status)}
+                  </span>
+
+                  <span class="text-xs text-zinc-500 flex items-center gap-1">
+                    <i data-lucide="users" size="13"></i>
+                    ${party.members}
+                  </span>
+
+                </div>
+
+                <h2 class="font-black text-lg mt-5">
+                  ${escapeHtml(party.name)}
+                </h2>
+
+                <p class="text-xs text-zinc-500 mt-2">
+                  Watch party untuk menikmati video bersama.
+                </p>
+
+                <button
+                  type="button"
+                  class="btn-secondary w-full mt-5 text-xs"
+                  onclick="joinParty('${escapeHtml(party.name)}')"
+                >
+                  <i data-lucide="log-in" size="15"></i>
+                  Join Party
+                </button>
+
+              </article>
+            `).join("")}
+
+          </div>
+
+        </div>
+      `;
+
+      refreshIcons();
+    }
+
+    /* =========================================================
+       MEDIA PAGE
+    ========================================================== */
+
+    function renderMedia() {
+      const videos =
+        filterVideos();
+
+      mainContent.innerHTML = `
+        <div class="max-w-[1500px] mx-auto">
+
+          <div class="mb-7">
+
+            <div class="text-[10px] uppercase tracking-[.2em] text-red-500 font-black">
+              Library
+            </div>
+
+            <h1 class="text-3xl sm:text-4xl font-black mt-1">
+              Media
+            </h1>
+
+            <p class="text-sm text-zinc-500 mt-2">
+              Semua media video yang tersedia.
+            </p>
+
+          </div>
+
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-7">
+
+            <div class="section-card p-4">
+              <div class="text-2xl font-black">
+                ${VIDEOS.length}
+              </div>
+              <div class="text-xs text-zinc-500 mt-1">
+                Total Videos
+              </div>
+            </div>
+
+            <div class="section-card p-4">
+              <div class="text-2xl font-black">
+                HD
+              </div>
+              <div class="text-xs text-zinc-500 mt-1">
+                Quality
+              </div>
+            </div>
+
+            <div class="section-card p-4">
+              <div class="text-2xl font-black">
+                2026
+              </div>
+              <div class="text-xs text-zinc-500 mt-1">
+                Latest Year
+              </div>
+            </div>
+
+            <div class="section-card p-4">
+              <div class="text-2xl font-black">
+                ${savedList.length}
+              </div>
+              <div class="text-xs text-zinc-500 mt-1">
+                Saved
+              </div>
+            </div>
+
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            ${renderVideoGrid(videos)}
+          </div>
+
+        </div>
+      `;
+
+      refreshIcons();
+    }
+
+    /* =========================================================
+       SETTINGS PAGE
+    ========================================================== */
+
+    function renderSettings() {
+      const isLight =
+        document.body.classList.contains(
+          "light-mode"
+        );
+
+      mainContent.innerHTML = `
+        <div class="max-w-[900px] mx-auto">
+
+          <div class="mb-7">
+
+            <div class="text-[10px] uppercase tracking-[.2em] text-red-500 font-black">
+              Preferences
+            </div>
+
+            <h1 class="text-3xl sm:text-4xl font-black mt-1">
+              Setting
+            </h1>
+
+            <p class="text-sm text-zinc-500 mt-2">
+              Atur pengalaman penggunaan VIRALFLIX.
+            </p>
+
+          </div>
+
+          <div class="space-y-4">
+
+            <!-- APPEARANCE -->
+            <section class="section-card p-5">
+
+              <div class="flex items-center gap-4">
+
+                <div class="w-11 h-11 rounded-xl bg-red-500/10 text-red-500 flex items-center justify-center">
+                  <i data-lucide="palette" size="20"></i>
+                </div>
+
+                <div class="flex-1">
+
+                  <h2 class="font-bold">
+                    Appearance
+                  </h2>
+
+                  <p class="text-xs text-zinc-500 mt-1">
+                    Ubah tampilan antara Night dan Light Mode.
+                  </p>
+
+                </div>
+
+                <button
+                  type="button"
+                  class="btn-secondary text-xs"
+                  onclick="toggleTheme()"
+                >
+                  ${isLight ? "Light Mode" : "Night Mode"}
+                </button>
+
+              </div>
+
+            </section>
+
+            <!-- NOTIFICATION -->
+            <section class="section-card p-5">
+
+              <div class="flex items-center gap-4">
+
+                <div class="w-11 h-11 rounded-xl bg-blue-500/10 text-blue-500 flex items-center justify-center">
+                  <i data-lucide="bell" size="20"></i>
+                </div>
+
+                <div class="flex-1">
+
+                  <h2 class="font-bold">
+                    Notifications
+                  </h2>
+
+                  <p class="text-xs text-zinc-500 mt-1">
+                    Kelola notifikasi dan update terbaru.
+                  </p>
+
+                </div>
+
+                <button
+                  type="button"
+                  class="btn-secondary text-xs"
+                  onclick="showToast('Notifikasi aktif untuk sesi ini.', 'success')"
+                >
+                  Enabled
+                </button>
+
+              </div>
+
+            </section>
+
+            <!-- WATCHLIST -->
+            <section class="section-card p-5">
+
+              <div class="flex items-center gap-4">
+
+                <div class="w-11 h-11 rounded-xl bg-green-500/10 text-green-500 flex items-center justify-center">
+                  <i data-lucide="bookmark-check" size="20"></i>
+                </div>
+
+                <div class="flex-1">
+
+                  <h2 class="font-bold">
+                    Watch List
+                  </h2>
+
+                  <p class="text-xs text-zinc-500 mt-1">
+                    ${savedList.length} video tersimpan di browser.
+                  </p>
+
+                </div>
+
+                <button
+                  type="button"
+                  class="btn-secondary text-xs"
+                  onclick="clearWatchList()"
+                >
+                  Clear List
+                </button>
+
+              </div>
+
+            </section>
+
+            <!-- DIRECT LINK -->
+            <section class="section-card p-5">
+
+              <div class="flex items-center gap-4">
+
+                <div class="w-11 h-11 rounded-xl bg-purple-500/10 text-purple-500 flex items-center justify-center">
+                  <i data-lucide="external-link" size="20"></i>
+                </div>
+
+                <div class="flex-1">
+
+                  <h2 class="font-bold">
+                    Streaming Access
+                  </h2>
+
+                  <p class="text-xs text-zinc-500 mt-1">
+                    Tombol Watch membuka player dan DirectLink dalam tab baru.
+                  </p>
+
+                </div>
+
+                <button
+                  type="button"
+                  class="btn-secondary text-xs"
+                  onclick="openDirectLink()"
+                >
+                  Test Link
+                </button>
+
+              </div>
+
+            </section>
+
+          </div>
+
+        </div>
+      `;
+
+      refreshIcons();
+    }
+
+    /* =========================================================
+       PAGE ROUTER
+    ========================================================== */
+
+    function renderCurrentPage() {
+
+      switch (currentPage) {
+
+        case "home":
+          renderHome();
+          break;
+
+        case "watchlist":
+          renderWatchList();
+          break;
+
+        case "coming":
+          renderComingSoon();
+          break;
+
+        case "discovery":
+          renderDiscovery();
+          break;
+
+        case "friends":
+          renderFriends();
+          break;
+
+        case "parties":
+          renderParties();
+          break;
+
+        case "media":
+          renderMedia();
+          break;
+
+        case "settings":
+          renderSettings();
+          break;
+
+        default:
+          currentPage = "home";
+          renderHome();
+          break;
+      }
+
+      updateNavigation();
+
+      refreshIcons();
+    }
+
+    /* =========================================================
+       NAVIGATION
+    ========================================================== */
+
+    function updateNavigation() {
+
+      document
+        .querySelectorAll(
+          ".nav-item[data-page]"
+        )
+        .forEach(item => {
+
+          const page =
+            item.dataset.page;
+
+          item.classList.toggle(
+            "active",
+            page === currentPage
+          );
+
+        });
+    }
+
+    function navigateTo(page) {
+      currentPage = page;
+
+      closeMobileSidebar();
+
+      renderCurrentPage();
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
+
+    document
+      .querySelectorAll(
+        ".nav-item[data-page]"
+      )
+      .forEach(item => {
+
+        item.addEventListener(
+          "click",
+          () => {
+            navigateTo(
+              item.dataset.page
+            );
+          }
+        );
+
+      });
+
+    /* =========================================================
+       SEARCH
+    ========================================================== */
+
+    searchInput.addEventListener(
+      "input",
+      function() {
+
+        currentSearch =
+          this.value || "";
+
+        renderCurrentPage();
+
+      }
+    );
+
+    /* =========================================================
+       THEME
+    ========================================================== */
+
+    function applyTheme(
+      theme
+    ) {
+
+      const light =
+        theme === "light";
+
+      document.body.classList.toggle(
+        "light-mode",
+        light
+      );
+
+      try {
+        localStorage.setItem(
+          "viralflix_theme",
+          light
+            ? "light"
+            : "dark"
+        );
+      } catch (error) {
+        /* Ignore storage errors */
+      }
+
+      updateThemeButton();
+    }
+
+    function updateThemeButton() {
+
+      const light =
+        document.body.classList.contains(
+          "light-mode"
+        );
+
+      themeText.textContent =
+        light
+          ? "Light"
+          : "Night";
+
+      themeBtn.setAttribute(
+        "aria-label",
+        light
+          ? "Switch to Night Mode"
+          : "Switch to Light Mode"
+      );
+
+      themeBtn.innerHTML = `
+        <i
+          data-lucide="${light ? "sun" : "moon"}"
+          size="17"
+        ></i>
+
+        <span class="hidden sm:inline">
+          ${light ? "Light" : "Night"}
+        </span>
+      `;
+
+      refreshIcons();
+    }
+
+    function toggleTheme() {
+
+      const light =
+        document.body.classList.contains(
+          "light-mode"
+        );
+
+      applyTheme(
+        light
+          ? "dark"
+          : "light"
+      );
+
+      showToast(
+        light
+          ? "Night Mode aktif."
+          : "Light Mode aktif.",
+        "success"
+      );
+
+      if (currentPage === "settings") {
+        renderCurrentPage();
+      }
+    }
+
+    themeBtn.addEventListener(
+      "click",
+      toggleTheme
+    );
+
+    /* =========================================================
+       NOTIFICATION
+    ========================================================== */
+
+    notificationBtn.addEventListener(
+      "click",
+      () => {
+
+        showToast(
+          "Tidak ada notifikasi baru. Kamu sudah mendapatkan update terbaru.",
+          "info"
+        );
+
+      }
+    );
+
+    /* =========================================================
+       PROFILE
+    ========================================================== */
+
+    profileBtn.addEventListener(
+      "click",
+      () => {
+
+        showToast(
+          "Profile Viewer aktif.",
+          "info"
+        );
+
+      }
+    );
+
+    /* =========================================================
+       VIEW MORE
+    ========================================================== */
+
+    function viewMore(
+      sectionName
+    ) {
+
+      showToast(
+        sectionName +
+        " sedang menampilkan koleksi terbaik.",
+        "success"
+      );
+
+      if (
+        sectionName === "New Release" ||
+        sectionName === "Popular Movies"
+      ) {
+        navigateTo("media");
+      }
+
+    }
+
+    /* =========================================================
+       COMING SOON NOTIFY
+    ========================================================== */
+
+    function notifyRelease(
+      title
+    ) {
+
+      showToast(
+        "Notifikasi untuk " +
+        title +
+        " telah diaktifkan.",
+        "success"
+      );
+
+    }
+
+    /* =========================================================
+       FRIEND SHARE
+    ========================================================== */
+
+    async function shareSite() {
+
+      const shareData = {
+        title: "VIRALFLIX",
+        text: "Lihat video viral terbaru di VIRALFLIX.",
+        url: window.location.href
+      };
+
+      if (
+        navigator.share
+      ) {
+
+        try {
+
+          await navigator.share(
+            shareData
+          );
+
+          showToast(
+            "VIRALFLIX berhasil dibagikan.",
+            "success"
+          );
+
+        } catch (error) {
+
+          if (
+            error &&
+            error.name !== "AbortError"
+          ) {
+            showToast(
+              "Share dibatalkan atau tidak tersedia.",
+              "warning"
+            );
+          }
+
+        }
+
+      } else {
+
+        try {
+
+          await navigator.clipboard.writeText(
+            window.location.href
+          );
+
+          showToast(
+            "Link VIRALFLIX disalin.",
+            "success"
+          );
+
+        } catch (error) {
+
+          showToast(
+            "Browser tidak mendukung fitur share.",
+            "warning"
+          );
+
+        }
+
+      }
+    }
+
+    /* =========================================================
+       PARTY
+    ========================================================== */
+
+    function createParty() {
+
+      showToast(
+        "Watch Party baru berhasil dibuat.",
+        "success"
+      );
+
+    }
+
+    function joinParty(
+      name
+    ) {
+
+      showToast(
+        "Bergabung ke " +
+        name +
+        ".",
+        "success"
+      );
+
+    }
+
+    /* =========================================================
+       CLEAR WATCH LIST
+    ========================================================== */
+
+    function clearWatchList() {
+
+      if (!savedList.length) {
+
+        showToast(
+          "Watch List sudah kosong.",
+          "info"
+        );
+
+        return;
+      }
+
+      savedList = [];
+
+      saveWatchList();
+
+      showToast(
+        "Semua video di Watch List telah dihapus.",
+        "success"
+      );
+
+      renderCurrentPage();
+    }
+
+    /* =========================================================
+       MOBILE SIDEBAR
+    ========================================================== */
+
+    function openMobileSidebar() {
+
+      sidebar.classList.add(
+        "mobile-open"
+      );
+
+      sidebarOverlay.classList.add(
+        "show"
+      );
+
+      sidebarOverlay.setAttribute(
+        "aria-hidden",
+        "false"
+      );
+
+    }
+
+    function closeMobileSidebar() {
+
+      sidebar.classList.remove(
+        "mobile-open"
+      );
+
+      sidebarOverlay.classList.remove(
+        "show"
+      );
+
+      sidebarOverlay.setAttribute(
+        "aria-hidden",
+        "true"
+      );
+
+    }
+
+    mobileMenuBtn.addEventListener(
+      "click",
+      openMobileSidebar
+    );
+
+    sidebarOverlay.addEventListener(
+      "click",
+      closeMobileSidebar
+    );
+
+    /* =========================================================
+       MODAL EVENTS
+    ========================================================== */
+
+    modalClose.addEventListener(
+      "click",
+      closeVideoModal
+    );
+
+    modalDirectBtn.addEventListener(
+      "click",
+      () => {
+        openDirectLink();
+      }
+    );
+
+    videoModal.addEventListener(
+      "click",
+      function(event) {
+
+        if (
+          event.target ===
+          videoModal
+        ) {
+          closeVideoModal();
+        }
+
+      }
+    );
+
+    document.addEventListener(
+      "keydown",
+      function(event) {
+
+        if (
+          event.key === "Escape" &&
+          videoModal.classList.contains(
+            "show"
+          )
+        ) {
+          closeVideoModal();
+        }
+
+      }
+    );
+
+    /* =========================================================
+       PREVENT MODAL VIDEO ERRORS FROM BREAKING UI
+    ========================================================== */
+
+    videoPlayer.addEventListener(
+      "error",
+      () => {
+
+        if (currentVideoId !== null) {
+
+          showToast(
+            "Video gagal dimuat. Silakan coba lagi.",
+            "warning"
+          );
+
+        }
+
+      }
+    );
+
+    /* =========================================================
+       INITIAL THEME
+    ========================================================== */
+
+    let savedTheme = "dark";
+
+    try {
+
+      savedTheme =
+        localStorage.getItem(
+          "viralflix_theme"
+        ) || "dark";
+
+    } catch (error) {
+
+      savedTheme = "dark";
+
+    }
+
+    applyTheme(
+      savedTheme === "light"
+        ? "light"
+        : "dark"
+    );
+
+    /* =========================================================
+       INITIAL RENDER
+    ========================================================== */
+
+    renderCurrentPage();
+
+    /* =========================================================
+       RESTORE SEARCH VALUE
+    ========================================================== */
+
+    searchInput.value =
+      currentSearch;
+
+    /* =========================================================
+       FINAL ICON RENDER
+    ========================================================== */
+
+    refreshIcons();
+
+  </script>
+
+</body>
+    </html>
